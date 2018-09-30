@@ -12,7 +12,7 @@ Person::Person(){
 	sprite.setOrigin(spriteSize.width/2.0, spriteSize.height/2.0);
 	x = WIDTH / 2;
 	y = HEIGHT / 2;
-	health = 100;
+	health = STARTING_HEALTH;
 	sprite.setPosition(x, y);
 }
 
@@ -22,6 +22,10 @@ sf::Sprite Person::getSprite(){
 
 int Person::getHealth(){
 	return this->health;
+}
+
+void Person::setHealth(int health){
+	this->health = health;
 }
 
 void Person::updatePosition(int dx, int dy){
