@@ -1,10 +1,10 @@
 #include <iostream>
 #include "Intro.hpp"
-#include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  int Intro::display() {
+  int Intro::display_intro() {
+    window.clear();
     sf::Texture spash;
 
     if (!spash.loadFromFile("./images/neighborhood.png")) {
@@ -35,11 +35,6 @@ namespace intro {
 
     sf::Clock clock;
 
-    sf::SoundBuffer sound_buffer;
-    if (!sound_buffer.loadFromFile("music/epic_hero.wav")) {
-      text.setFillColor(sf::Color::Black);
-    } else {
-      text.setFillColor(sf::Color::White);
-    }
+    sf::Music music;
   }
 } // namespace intro
