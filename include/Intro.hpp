@@ -6,7 +6,10 @@
 namespace intro {
   class Intro {
     public:
-      Intro() = default;
+      sf::Font FONT;
+      sf::Text TITLE;
+
+      Intro(int, int, sf::Font);
       ~Intro() = default;
 
       int display_intro();
