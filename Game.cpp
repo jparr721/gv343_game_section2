@@ -12,6 +12,7 @@
 #include "Person.hpp"
 #include "Monster.hpp"
 #include "Settings.hpp"
+#include "Collectible.hpp"
 #include <iostream>
 #include <random>
 #include "SFML/Audio.hpp"
@@ -29,6 +30,10 @@ Game::Game(){
 	done = false;
 	// Add monsters to the game via a vector of Monsters.
 	monsters.push_back(Monster());
+
+	// Add collectible to the game
+	collectibles.push_back(Collectible());
+
 	// The "standard" game font is loaded here.
 	if(!font.loadFromFile("fonts/Notable-Regular.ttf")){
 		std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
@@ -213,9 +218,15 @@ void Game::render()
 {
 	window.clear();
 	window.draw(player.getSprite());
+
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		window.draw( it->getSprite() );
 	}
+
+	for(auto cl = collectibles.begin(); cl != collectibles.end(); ++cl){
+		window.draw(cl->getSprite());
+	}
+
 	sf::RectangleShape border(sf::Vector2f(WIDTH, 20));
 	border.setPosition(sf::Vector2f(0,HEIGHT));
 	window.draw(border);

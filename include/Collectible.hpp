@@ -1,8 +1,8 @@
 #ifndef		__H__COLLECTIBLE
 #define		__H__COLLECTIBLE
 
-// #include "SFML/Graphics.hpp"
-// #include <string>
+#include "SFML/Graphics.hpp"
+#include <string>
 
 class Collectible {
 	private:
