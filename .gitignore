@@ -1,0 +1,9 @@
+# IDE Output Folders
+.idea/
+.vs/
+
+# CMake Build Directories
+cmake-build-debug/
+
+# Build Directories for Windows
+SFML-2.5.0-win64/
