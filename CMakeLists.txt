@@ -15,7 +15,7 @@ set(SOURCE_FILES
         Game.cpp
         main.cpp
         Monster.cpp
-        Person.cpp)
+        Person.cpp Intro.cpp)
 
 add_executable(CIS_343_02 ${SOURCE_FILES})
 target_link_libraries(CIS_343_02 sfml-graphics sfml-audio sfml-window sfml-system)
