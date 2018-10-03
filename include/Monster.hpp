@@ -5,7 +5,7 @@
 #include <string>
 
 class Monster {
-	private:
+	protected:
 		int health;
 		int x;
 		int y;
@@ -13,6 +13,7 @@ class Monster {
 		sf::Sprite sprite;
 		void move(int x, int y);
 		int movement_speed;
+		int attackPower;
 
 	public:
 		Monster();
@@ -21,12 +22,13 @@ class Monster {
 		void updatePosition(int x, int y);
 		sf::Sprite getSprite();
 		int getDamage();
-	protected:
-		int attackPower;
 };
 
 //Extension of Monster class
 class Monster_A: public Monster {
+	private:
 
+	public:
+		MonsterA();
 };
 #endif
