@@ -5,6 +5,9 @@
 namespace intro {
   class Intro {
     public:
+      Intro() = default;
+      Intro(int, int, sf::Font);
+      ~Intro() = default;
       int show(sf::RenderWindow&);
   };
 } // namespace intro
