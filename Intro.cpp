@@ -1,15 +1,11 @@
 #include <iostream>
 #include "Intro.hpp"
+#include "WindowLoader.hpp"
 #include "SFML/Audio.hpp"
 
 namespace intro {
   Intro::Intro(int width, int height, sf::Font font) {
-    this->FONT = font;
-
-    window.create(sf::VideoMode(width, height + 100), "Not on my block");
-
-    loaded = false;
-
+    window.create(sf::VideoMode(width, height + 100), "SHOOPOPOPOP");
   }
 
   int Intro::show(sf::RenderWindow& window) {
@@ -46,22 +42,35 @@ namespace intro {
 
     sf::Music music;
 
-        // TODO - This currently breaks.
-//        sf::SoundBuffer sound_buffer;
-//        if (!sound_buffer.loadFromFile("music/epic_hero.wav")) {
-//            text.setFillColor(sf::Color::Black);
-//        } else {
-//            text.setFillColor(sf::Color::White);
-//        }
-
     float seconds = 0.0f;
-    while (seconds <= 5.0f) {
+    /* while (seconds <= 5.0f) { */
+    /*   window.draw(sprite); */
+    /*   window.draw(title); */
+    /*   window.draw(text); */
+    /*   window.display(); */
+
+    /*   seconds = clock.getElapsedTime().asSeconds(); */
+    /* } */
+    while (window.isOpen()) {
+      sf::Event event;
+      while (window.pollEvent(event)) {
+        if (event.type = sf::Event::Closed) {
+          window.close();
+          exit(0);
+        }
+
+        if (event.type == sf::Event::KeyPressed) {
+          if(event.key.code == sf::Keyboard::Return) {
+            window.clear();
+            return 0;
+          }
+        }
+      }
+
       window.draw(sprite);
       window.draw(title);
       window.draw(text);
       window.display();
-
-      seconds = clock.getElapsedTime().asSeconds();
     }
   }
 } // namespace intro

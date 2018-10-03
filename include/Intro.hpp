@@ -4,6 +4,7 @@
 
 namespace intro {
   class Intro {
+    sf::RenderWindow rw;
     public:
       Intro() = default;
       Intro(int, int, sf::Font);
