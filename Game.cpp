@@ -14,6 +14,7 @@
 #include "Settings.hpp"
 #include <iostream>
 #include <random>
+#include <Intro.hpp>
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
 
@@ -42,6 +43,9 @@ Game::Game(){
  */
 
 int Game::start(){
+	intro::Intro i;
+	i.show(window);
+
 	window.clear();
 	sf::Texture splash;
 	if(!splash.loadFromFile("./images/neighborhood.png")){

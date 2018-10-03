@@ -3,16 +3,7 @@
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  Intro::Intro(int width, int height, sf::Font font) {
-    this->FONT = font;
-
-    window.create(sf::VideoMOde(width, height + 100), "Not on my block");
-
-    loaded = false;
-
-  }
-
-  int Intro::display_intro() {
+  int Intro::show(sf::RenderWindow& window) {
     window.clear();
     sf::Texture spash;
 
