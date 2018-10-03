@@ -205,6 +205,15 @@ void Game::update()
 			player.updatePosition(distribution(engine), distribution(engine));
 		}
 	}
+
+
+
+	for(auto col = collectibles.begin(); col != collectibles.end(); ++col){
+		if(Collision::BoundingBoxTest(player.getSprite(), col->getSprite()) && col->getActive()) {
+			col->processCollectible(&player);
+		}
+	}
+
 	if(player.getHealth() <= 0){
 		done = true;
 	}
@@ -224,7 +233,9 @@ void Game::render()
 	}
 
 	for(auto cl = collectibles.begin(); cl != collectibles.end(); ++cl){
-		window.draw(cl->getSprite());
+		if(cl->getActive()) {
+			window.draw(cl->getSprite());
+		}
 	}
 
 	sf::RectangleShape border(sf::Vector2f(WIDTH, 20));
