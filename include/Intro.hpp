@@ -1,5 +1,6 @@
 #ifndef INCLUDE_INTRO_HPP
 #define INCLUDE_INTRO_HPP
+<<<<<<< HEAD
 #include "SFML/Graphics.hpp"
 
 
@@ -21,3 +22,19 @@ namespace intro {
 } // namespace intro
 
 #endif
+=======
+
+#include "SFML/Graphics.hpp"
+
+namespace intro {
+    class Intro {
+    public:
+        Intro() = default;
+        ~Intro() = default;
+        int show(sf::RenderWindow&);
+    private:
+        bool loaded;
+    };
+}
+#endif
+>>>>>>> 45f038e730db9cc1f132b31858ce65288815d09a

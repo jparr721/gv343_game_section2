@@ -11,8 +11,8 @@ class Game {
 		Game();
 		int start();
 		void run();
-	private:
 		sf::RenderWindow window;
+	private:
 		void processEvents();
 		void update();
 		void render();
