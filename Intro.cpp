@@ -6,7 +6,7 @@ namespace intro {
   Intro::Intro(int width, int height, sf::Font font) {
     this->FONT = font;
 
-    window.create(sf::VideoMOde(width, height + 100), "Not on my block");
+    window.create(sf::VideoMode(width, height + 100), "Not on my block");
 
     loaded = false;
 
