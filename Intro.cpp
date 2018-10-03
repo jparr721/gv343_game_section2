@@ -12,7 +12,7 @@ namespace intro {
 
   }
 
-  int Intro::display_intro() {
+  int Intro::show(sf::RenderWindow& window) {
     window.clear();
     sf::Texture spash;
 
