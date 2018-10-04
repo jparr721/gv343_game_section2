@@ -4,8 +4,16 @@
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  Intro::Intro(int width, int height, sf::Font font) {
-    window.create(sf::VideoMode(width, height + 100), "SHOOPOPOPOP");
+  sf::RenderWindow* Intro::construct_window_context(
+      int width = 800,
+      int height = 600,
+      std::string heading = "Video Games, OH YEAH"
+      ) {
+    this->rw.create(sf::VideoMode(width, height), heading);
+
+    auto window_copy = &this->rw;
+
+    return window_copy;
   }
 
   int Intro::show(sf::RenderWindow& window) {
@@ -20,7 +28,7 @@ namespace intro {
     sprite.setTexture(spash);
 
     sf::Font font;
-    if (!font.loadFromFile("./fonts/COMIC.ttf")) {
+    if (!font.loadFromFile("fonts/Notable-Regular.ttf")) {
       return EXIT_FAILURE;
     }
 
@@ -42,21 +50,12 @@ namespace intro {
 
     sf::Music music;
 
-    float seconds = 0.0f;
-    /* while (seconds <= 5.0f) { */
-    /*   window.draw(sprite); */
-    /*   window.draw(title); */
-    /*   window.draw(text); */
-    /*   window.display(); */
-
-    /*   seconds = clock.getElapsedTime().asSeconds(); */
-    /* } */
     while (window.isOpen()) {
       sf::Event event;
       while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
           window.close();
-          exit(0);
+          return 0;
         }
 
         if (event.type == sf::Event::KeyPressed) {
@@ -71,7 +70,18 @@ namespace intro {
       window.draw(title);
       window.draw(text);
       window.display();
+
+
+      sf::Time time = clock.getElapsedTime();
+      sf::Int32 mills = time.asMilliseconds();
+      if(mills % 1000 > 500){
+        text.setFillColor(sf::Color::Black);
+      } else {
+        text.setFillColor(sf::Color::White);
+      }
     }
+
+    return 0;
   }
 } // namespace intro
 
