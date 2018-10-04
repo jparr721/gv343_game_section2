@@ -5,7 +5,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 
-
+//TODO Make a flag to say if this entity is displayed or not.
 namespace intro{
   namespace moving_scene{
     /*Two typedefs to define the scale and position of the sprite.*/
@@ -24,9 +24,6 @@ namespace intro{
      *****************************************************************/
     class IntroEntity{
       public:
-        //TODO Add a start position parameter 
-        //TODO Add a scale parameter
-        //TODO typdef the scale parameter
         /**************************************************************
          * The constructor initalizes the texture, sprite, and sets
          * the scale of the entity 

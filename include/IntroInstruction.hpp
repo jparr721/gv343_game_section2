@@ -12,11 +12,22 @@ namespace intro{
         IntroInstruction(int entityID, std::string text, char action,
             int deltaX, int deltaY);
 
+        std::string getText() const;
+
+        sf::Vector2f getVector() const;
+
+        enum Action :unsigned char {
+          MOVE_ENTITY,
+          SET_POSITION,
+          TOGGLE__ENTITY,
+          DISPLAY_SPEECH, 
+          PLAY_SOUND
+        };
+
       private:
         int entityID;
-        std::string text;
-        char action;
-        sf::Vector2i motion;
+        Action action;
+        std::string detail;
     };
   }
 }
