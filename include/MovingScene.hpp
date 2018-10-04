@@ -19,6 +19,7 @@ namespace intro{
         std::vector<sf::SoundBuffer> bufferedFiles;
         std::vector<sf::Sound> sounds;
         sf::Music player;
+        sf::RenderWindow window;
         
     };
   }
