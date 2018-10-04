@@ -50,3 +50,5 @@ SFML-2.5.0-win64/
 # Ignore the executable file
 nomb
 
+# Ignore swp files from vim
+*.swp
