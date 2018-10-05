@@ -21,7 +21,7 @@ namespace intro{
     }
 
     void MovingScene::run(sf::RenderWindow &window){
-      window.clear();
+      window.draw(entities.front().getSprite());
       window.display();
     }
 

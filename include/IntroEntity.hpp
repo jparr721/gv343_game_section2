@@ -46,7 +46,7 @@ namespace intro{
          * Param deltaY Integer value for the changing y coordinate.
          * Return: Sprite for this entity.
          *************************************************************/
-        sf::Sprite getSprite(int deltaX = 0, int deltaY = 0);
+        sf::Sprite getSprite();
       private:
         /*A Sprite variable to hold a sprite.*/
         sf::Sprite sprite;

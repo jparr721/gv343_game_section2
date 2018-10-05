@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Settings.hpp>
 #include "Intro.hpp"
+#include "MovingScene.hpp"
 #include "SFML/Audio.hpp"
 
 namespace intro {
@@ -54,6 +55,16 @@ namespace intro {
             this->window->display();
             timeElapsed = clock.getElapsedTime().asSeconds();
         }
+
+//        this->window->clear();
+//        sf::Music player;
+//        moving_scene::MovingScene scene(
+//            "intros/entityList.txt",
+//            "throwaway instruction",
+//            "throwaway soundbuffer",
+//            "throwaway music",
+//            player);
+            
 
         return 0;
     }

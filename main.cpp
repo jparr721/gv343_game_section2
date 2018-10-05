@@ -15,6 +15,7 @@ int main(int argc, char** argv){
     intro::Intro i(window);
 
     // Show the intro.
+    std::cout << "here1" << std::endl;
     i.show();
 
 	while(true) {

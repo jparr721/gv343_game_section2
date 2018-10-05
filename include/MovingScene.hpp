@@ -127,6 +127,8 @@ namespace intro{
          * in this scene.
          *************************************************************/
         void initSounds(std::string &soundBufferList);
+
+        
     };
   }
 }

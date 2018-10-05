@@ -22,13 +22,13 @@ namespace intro{
       this->scale = scale;
     }
 
-    sf::Sprite IntroEntity::getSprite(int deltaX, int deltaY){
-      if(deltaX > 0 || deltaX < 0){
-        sprite.setScale(-scale.x, scale.y);
-      }
+    sf::Sprite IntroEntity::getSprite(){
+      //if(deltaX > 0 || deltaX < 0){
+        //sprite.setScale(-scale.x, scale.y);
+      //}
 
       //Update the sprites position
-      sprite.move(deltaX, deltaY);
+      //sprite.move(deltaX, deltaY);
 
       return sprite;
     }
