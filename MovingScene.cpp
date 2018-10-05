@@ -16,7 +16,13 @@ namespace intro{
         std::string soundBufferFilename,
         std::string music,
         sf::Music &player){
+      initEntities(entitiesFilename);
 
+    }
+
+    void MovingScene::run(sf::RenderWindow &window){
+      window.clear();
+      window.display();
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){
@@ -31,7 +37,7 @@ namespace intro{
       //number of entities
       std::string buffer[BUFFER_SIZE];
       std::getline(entityList, buffer[0]);
-      size_t size = std::stoi(buffer[0]);
+      int size = std::stoi(buffer[0]);
 
       //test something 
       for(int index = 0; index < size; ++index){
@@ -42,8 +48,8 @@ namespace intro{
         }
 
         //Extract the scale and position of the entity.
-        Scale scale(std::stof(buffer[1]), std::stof(buffer[2]));
-        Position position(std::stof(buffer[3]), std::stof(buffer[4]));
+        Scale scale(std::stoi(buffer[1]), std::stoi(buffer[2]));
+        Position position(std::stoi(buffer[3]), std::stoi(buffer[4]));
 
         entities.push_back(IntroEntity(buffer[0],scale, position));
 

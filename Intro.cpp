@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Intro.hpp"
+#include "MovingScene.hpp"
 #include "WindowLoader.hpp"
 #include "SFML/Audio.hpp"
 
@@ -50,8 +51,16 @@ namespace intro {
 
     sf::Music music;
 
+    moving_scene::MovingScene scene(
+        "intros/entityList.txt",
+        "throwaway instruction",
+        "throwaway sound buffer",
+        "throwaway music name",
+         music); //is sf::Music music a reference?
+
     while (window.isOpen()) {
       sf::Event event;
+
       while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
           window.close();
@@ -70,6 +79,7 @@ namespace intro {
       window.draw(title);
       window.draw(text);
       window.display();
+      scene.run(window);
 
 
       sf::Time time = clock.getElapsedTime();
@@ -80,7 +90,7 @@ namespace intro {
         text.setFillColor(sf::Color::White);
       }
     }
-
+        
     return 0;
   }
 } // namespace intro
