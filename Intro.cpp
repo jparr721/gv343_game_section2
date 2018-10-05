@@ -4,16 +4,14 @@
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  sf::RenderWindow* Intro::construct_window_context(
-      int width = 800,
-      int height = 600,
-      std::string heading = "Video Games, OH YEAH"
-      ) {
-    this->rw.create(sf::VideoMode(width, height), heading);
+  Intro::Intro(sf::RenderWindow &rw) {
+    int width = 800;
+    int height = 600;
+    std::string heading = "Video Games, OH YEAH";
 
-    auto window_copy = &this->rw;
+    rw.create(sf::VideoMode(width, height), heading);
 
-    return window_copy;
+    this->CURRENT_WINDOW = &rw;
   }
 
   int Intro::show(sf::RenderWindow& window) {
