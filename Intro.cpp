@@ -1,5 +1,6 @@
 #include <iostream>
 #include <Settings.hpp>
+#include <Animator.hpp>
 #include "Intro.hpp"
 #include "MovingScene.hpp"
 #include "SFML/Audio.hpp"
@@ -17,14 +18,19 @@ namespace intro {
 
     int Intro::showLogo() {
         sf::Texture logo;
+        sf::Color defaultColor(255, 255, 255, 0);
 
         if (!logo.loadFromFile("./images/the_lord.jpg")) {
             return EXIT_FAILURE;
         }
 
         sf::Sprite sprite;
+        sf::Color spriteColor;
         sprite.setTexture(logo);
         sprite.scale(2.0f, 2.0f);
+        spriteColor = sprite.getColor();
+        spriteColor.a = 0;
+        sprite.setColor(spriteColor);
 
         sf::Font font;
         if (!font.loadFromFile("fonts/Wonder.ttf")) {
@@ -35,7 +41,7 @@ namespace intro {
         title.setFont(font);
         title.setString("IRA PRODUCTIONS PRESENTS");
         title.setCharacterSize(32);
-        title.setFillColor(sf::Color::White);
+        title.setFillColor(defaultColor);
 
         // Position our elements
         sf::FloatRect txtRect = title.getGlobalBounds();
@@ -48,11 +54,24 @@ namespace intro {
 
         sf::Clock clock;
         float timeElapsed = 0.0f;
+        int alpha = 0;
+        Animator alphaAnimator;
+
+        alphaAnimator.init(0, 255, alpha, 1.0f);
 
         while (timeElapsed < 5.0f) {
+            this->window->clear();
             this->window->draw(sprite);
             this->window->draw(title);
             this->window->display();
+
+            alphaAnimator.run(clock);
+
+            defaultColor.a = alpha;
+            spriteColor.a = alpha;
+            title.setFillColor(defaultColor);
+            sprite.setColor(spriteColor);
+
             timeElapsed = clock.getElapsedTime().asSeconds();
         }
 
@@ -68,5 +87,5 @@ namespace intro {
 
         return 0;
     }
-} // namespace intro
+}
 
