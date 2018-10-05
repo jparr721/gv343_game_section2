@@ -5,12 +5,12 @@
 #include "SFML/Audio.hpp"
 
 namespace intro {
-    Intro::Intro(sf::RenderWindow &rw) {
-      this->window = &rw;
+    Intro::Intro(sf::RenderWindow &rw) : window(rw) {
+
     }
 
     int Intro::show() {
-        this->window->clear();
+        this->window.clear();
         this->showLogo();
         return 0;
     }
@@ -59,10 +59,10 @@ namespace intro {
         alphaAnimator.init(0, 255, alpha, 1.0f);
 
         while (timeElapsed < 5.0f) {
-            this->window->clear();
-            this->window->draw(sprite);
-            this->window->draw(title);
-            this->window->display();
+            this->window.clear();
+            this->window.draw(sprite);
+            this->window.draw(title);
+            this->window.display();
 
             alphaAnimator.run(clock);
 

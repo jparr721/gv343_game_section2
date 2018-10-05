@@ -6,7 +6,7 @@
 namespace intro {
   class Intro {
     public:
-      sf::RenderWindow* window;
+      sf::RenderWindow& window;
       Intro() = default;
       explicit Intro(sf::RenderWindow& rw);
       ~Intro() = default;

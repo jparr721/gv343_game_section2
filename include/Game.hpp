@@ -11,7 +11,6 @@ class Game {
 		Game(sf::RenderWindow& window);
 		int start();
 		void run();
-		sf::RenderWindow* window;
 	private:
 		void processEvents();
 		void update();
@@ -24,6 +23,7 @@ class Game {
 		sf::Text scoreLabel;
 		sf::Text playerHealth;	
         	sf::Font font;
+		sf::RenderWindow& window;
 		
 };
 
