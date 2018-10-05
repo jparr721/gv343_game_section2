@@ -75,10 +75,10 @@ namespace intro {
         }
       }
 
-      window.draw(sprite);
-      window.draw(title);
-      window.draw(text);
-      window.display();
+      //window.draw(sprite);
+      //window.draw(title);
+      //window.draw(text);
+      //window.display();
       scene.run(window);
 
 

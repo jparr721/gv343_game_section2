@@ -58,8 +58,36 @@ namespace intro{
       entityList.close();
     }
 
-    void MovingSceneinitInstructions(std::string &instructionsFilename){
+    void MovingScene::initInstructions(std::string &instructionsFilename){
+      constexpr int BUFFER_SIZE = 3; 
 
+      std::ifstream instructionList(instructionsFilename);
+      if(!instructionList){
+        //throw io error
+      }
+
+      //get the number of elements in this list
+      std::string buffer[BUFFER_SIZE];
+      std::getline(instructionList, buffer[0], ',');
+      int size = std::stoi(buffer[0]);
+
+      //throw away the line
+      std::getline(instructionList, buffer[0]);
+
+      for(int index = 0; index < size; ++index){
+        //Extract the line
+        std::getline(instructionList, buffer[0], ',');
+        std::getline(instructionList, buffer[1], ',');
+        std::getline(instructionList, buffer[2]);
+        
+        //Add the element to the vector
+        instructions.push_back(IntroInstruction(
+              std::stoi(buffer[0]),
+              buffer[1], 
+              buffer[2]
+              )
+            );
+      }
     }
 
     void MovingScene::initSounds(std::string &soundBufferList){
