@@ -1,40 +1,80 @@
 #include <iostream>
+#include <Settings.hpp>
+#include <Animator.hpp>
 #include "Intro.hpp"
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  int Intro::display_intro() {
-    window.clear();
-    sf::Texture spash;
-
-    if (!spash.loadFromFile("./images/neighborhood.png")) {
-      return EXIT_FAILURE;
+    Intro::Intro(sf::RenderWindow &rw) {
+      this->window = &rw;
     }
 
-    sf::Sprite sprite;
-    sprite.setTexture(spash);
-
-    sf::Font font;
-    if (!font.loadFromFile("./fonts/COMIC.ttf")) {
-      return EXIT_FAILURE;
+    int Intro::show() {
+        this->window->clear();
+        this->showLogo();
+        return 0;
     }
 
-    sf::Text title;
-    title.setFont(font);
-    title.setString("OH BOY OH BOY OH BOY");
-    title.setCharacterSize(84);
-    title.setFillColor(sf::Color::Red);
-    title.setPosition(10, 200);
+    int Intro::showLogo() {
+        sf::Texture logo;
+        sf::Color defaultColor(255, 255, 255, 0);
 
-    sf::Text text;
-    text.setFont(font);
-    text.setString("PrEsS EnTeR tO C0nT1Nu3");
-    text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(150, 350);
+        if (!logo.loadFromFile("./images/the_lord.jpg")) {
+            return EXIT_FAILURE;
+        }
 
-    sf::Clock clock;
+        sf::Sprite sprite;
+        sf::Color spriteColor;
+        sprite.setTexture(logo);
+        sprite.scale(2.0f, 2.0f);
+        spriteColor = sprite.getColor();
+        spriteColor.a = 0;
+        sprite.setColor(spriteColor);
 
-    sf::Music music;
-  }
-} // namespace intro
+        sf::Font font;
+        if (!font.loadFromFile("fonts/Wonder.ttf")) {
+            return EXIT_FAILURE;
+        }
+
+        sf::Text title;
+        title.setFont(font);
+        title.setString("IRA PRODUCTIONS PRESENTS");
+        title.setCharacterSize(32);
+        title.setFillColor(defaultColor);
+
+        // Position our elements
+        sf::FloatRect txtRect = title.getGlobalBounds();
+        sf::FloatRect picRect = sprite.getGlobalBounds();
+        float txtPosX = (WIDTH - txtRect.width) / 2;
+        float picPoxX = (WIDTH - picRect.width) / 2;
+
+        title.setPosition(txtPosX, HEIGHT - 50);
+        sprite.setPosition(picPoxX, 50);
+
+        sf::Clock clock;
+        float timeElapsed = 0.0f;
+        int alpha = 0;
+        Animator alphaAnimator;
+
+        alphaAnimator.init(0, 255, alpha, 1.0f);
+
+        while (timeElapsed < 5.0f) {
+            this->window->clear();
+            this->window->draw(sprite);
+            this->window->draw(title);
+            this->window->display();
+
+            alphaAnimator.run(clock);
+
+            defaultColor.a = alpha;
+            spriteColor.a = alpha;
+            title.setFillColor(defaultColor);
+            sprite.setColor(spriteColor);
+
+            timeElapsed = clock.getElapsedTime().asSeconds();
+        }
+
+        return 0;
+    }
+}
+
