@@ -37,11 +37,11 @@ void Animator::run(sf::Clock& clock) {
             if (*this->ptr < this->end) {
                 *this->ptr += this->increment;
             } else {
-                std::cout << "Stopping!" << std::endl;
+                //std::cout << "Stopping!" << std::endl;
                 *this->ptr = this->end;
             }
         }
-        std::cout << *this->ptr << std::endl;
+        //std::cout << *this->ptr << std::endl;
     } else {
         this->timeElapsed = clock.getElapsedTime().asSeconds() - lastTime;
     }
@@ -56,5 +56,5 @@ void Animator::calculateIncrement() {
 
     // Finally, calculate the proportion of cycles to the total distance required to travel.
     this->increment = difference / cycles;
-    std::cout << difference << " | " << cycles << " | " << this->increment << std::endl;
+    //std::cout << difference << " | " << cycles << " | " << this->increment << std::endl;
 }
