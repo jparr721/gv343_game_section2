@@ -1,87 +1,80 @@
 #include <iostream>
+#include <Settings.hpp>
+#include <Animator.hpp>
 #include "Intro.hpp"
-#include "WindowLoader.hpp"
 #include "SFML/Audio.hpp"
 
 namespace intro {
-  sf::RenderWindow* Intro::construct_window_context(
-      int width = 800,
-      int height = 600,
-      std::string heading = "Video Games, OH YEAH"
-      ) {
-    this->rw.create(sf::VideoMode(width, height), heading);
-
-    auto window_copy = &this->rw;
-
-    return window_copy;
-  }
-
-  int Intro::show(sf::RenderWindow& window) {
-    window.clear();
-    sf::Texture spash;
-
-    if (!spash.loadFromFile("./images/neighborhood.png")) {
-      return EXIT_FAILURE;
+    Intro::Intro(sf::RenderWindow &rw) {
+      this->window = &rw;
     }
 
-    sf::Sprite sprite;
-    sprite.setTexture(spash);
-
-    sf::Font font;
-    if (!font.loadFromFile("fonts/Notable-Regular.ttf")) {
-      return EXIT_FAILURE;
+    int Intro::show() {
+        this->window->clear();
+        this->showLogo();
+        return 0;
     }
 
-    sf::Text title;
-    title.setFont(font);
-    title.setString("OH BOY OH BOY OH BOY");
-    title.setCharacterSize(84);
-    title.setFillColor(sf::Color::Red);
-    title.setPosition(10, 200);
+    int Intro::showLogo() {
+        sf::Texture logo;
+        sf::Color defaultColor(255, 255, 255, 0);
 
-    sf::Text text;
-    text.setFont(font);
-    text.setString("PrEsS EnTeR tO C0nT1Nu3");
-    text.setCharacterSize(24);
-    text.setFillColor(sf::Color::White);
-    text.setPosition(150, 350);
-
-    sf::Clock clock;
-
-    sf::Music music;
-
-    while (window.isOpen()) {
-      sf::Event event;
-      while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-          window.close();
-          return 0;
+        if (!logo.loadFromFile("./images/the_lord.jpg")) {
+            return EXIT_FAILURE;
         }
 
-        if (event.type == sf::Event::KeyPressed) {
-          if(event.key.code == sf::Keyboard::Return) {
-            window.clear();
-            return 0;
-          }
+        sf::Sprite sprite;
+        sf::Color spriteColor;
+        sprite.setTexture(logo);
+        sprite.scale(2.0f, 2.0f);
+        spriteColor = sprite.getColor();
+        spriteColor.a = 0;
+        sprite.setColor(spriteColor);
+
+        sf::Font font;
+        if (!font.loadFromFile("fonts/Wonder.ttf")) {
+            return EXIT_FAILURE;
         }
-      }
 
-      window.draw(sprite);
-      window.draw(title);
-      window.draw(text);
-      window.display();
+        sf::Text title;
+        title.setFont(font);
+        title.setString("IRA PRODUCTIONS PRESENTS");
+        title.setCharacterSize(32);
+        title.setFillColor(defaultColor);
 
+        // Position our elements
+        sf::FloatRect txtRect = title.getGlobalBounds();
+        sf::FloatRect picRect = sprite.getGlobalBounds();
+        float txtPosX = (WIDTH - txtRect.width) / 2;
+        float picPoxX = (WIDTH - picRect.width) / 2;
 
-      sf::Time time = clock.getElapsedTime();
-      sf::Int32 mills = time.asMilliseconds();
-      if(mills % 1000 > 500){
-        text.setFillColor(sf::Color::Black);
-      } else {
-        text.setFillColor(sf::Color::White);
-      }
+        title.setPosition(txtPosX, HEIGHT - 50);
+        sprite.setPosition(picPoxX, 50);
+
+        sf::Clock clock;
+        float timeElapsed = 0.0f;
+        int alpha = 0;
+        Animator alphaAnimator;
+
+        alphaAnimator.init(0, 255, alpha, 1.0f);
+
+        while (timeElapsed < 5.0f) {
+            this->window->clear();
+            this->window->draw(sprite);
+            this->window->draw(title);
+            this->window->display();
+
+            alphaAnimator.run(clock);
+
+            defaultColor.a = alpha;
+            spriteColor.a = alpha;
+            title.setFillColor(defaultColor);
+            sprite.setColor(spriteColor);
+
+            timeElapsed = clock.getElapsedTime().asSeconds();
+        }
+
+        return 0;
     }
-
-    return 0;
-  }
-} // namespace intro
+}
 
