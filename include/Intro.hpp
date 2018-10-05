@@ -5,12 +5,14 @@
 
 namespace intro {
   class Intro {
-    sf::RenderWindow rw;
     public:
+      sf::RenderWindow* window;
       Intro() = default;
+      explicit Intro(sf::RenderWindow& rw);
       ~Intro() = default;
-      int show(sf::RenderWindow&);
-      sf::RenderWindow* construct_window_context(int, int, std::string);
+      int show();
+  private:
+      int showLogo();
   };
 } // namespace intro
 
