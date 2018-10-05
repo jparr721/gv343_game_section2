@@ -61,10 +61,8 @@ namespace intro{
     void MovingScene::initInstructions(std::string &instructionsFilename){
       constexpr int BUFFER_SIZE = 3; 
 
+      //This has the exception built in according to Prof. Woodring
       std::ifstream instructionList(instructionsFilename);
-      if(!instructionList){
-        //throw io error
-      }
 
       //get the number of elements in this list
       std::string buffer[BUFFER_SIZE];
@@ -79,7 +77,7 @@ namespace intro{
         std::getline(instructionList, buffer[0], ',');
         std::getline(instructionList, buffer[1], ',');
         std::getline(instructionList, buffer[2]);
-        
+
         //Add the element to the vector
         instructions.push_back(IntroInstruction(
               std::stoi(buffer[0]),
@@ -88,6 +86,8 @@ namespace intro{
               )
             );
       }
+
+      instructionList.close();
     }
 
     void MovingScene::initSounds(std::string &soundBufferList){
