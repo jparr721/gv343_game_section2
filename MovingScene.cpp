@@ -91,7 +91,17 @@ namespace intro{
     }
 
     void MovingScene::initSounds(std::string &soundBufferList){
+      std::ifstream soundList(soundBufferList);
+      std::string buffer;
 
+      //Load each buffer and sound file.
+      while(std::getline(soundList, buffer)){
+        bufferedFiles.push_back(sf::SoundBuffer());
+        sounds.push_back(sf::Sound());
+        bufferedFiles.back().loadFromFile(buffer);
+        sounds.back().setBuffer(bufferedFiles.back());
+      }
+      soundList.close();
     }
 
   }
