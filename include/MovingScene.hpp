@@ -128,6 +128,15 @@ namespace intro{
          *************************************************************/
         void initSounds(std::string &soundBufferList);
 
+        void move_entity(int entityID, sf::Vector2f  move);
+        void setPosition(int entityID, sf::Vector2f positon);
+        void toggleEntity(int entityID);
+        void displaySpeech(std::string text);
+        void playSound(std::string soundname);
+        void wait(float time);
+        void updateScreen(sf::RenderWindow &window);
+
+
         
     };
   }

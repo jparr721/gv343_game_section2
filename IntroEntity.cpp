@@ -24,7 +24,7 @@ namespace intro{
 
     sf::Sprite IntroEntity::getSprite(){
       //if(deltaX > 0 || deltaX < 0){
-        //sprite.setScale(-scale.x, scale.y);
+      //sprite.setScale(-scale.x, scale.y);
       //}
 
       //Update the sprites position
@@ -32,5 +32,14 @@ namespace intro{
 
       return sprite;
     }
-  }
+
+    void IntroEntity::moveSprite(int deltaX, int deltaY){
+      if(deltaX > 0 || deltaX < 0){
+        sprite.setScale(-scale.x, scale.y);
+      }
+
+      sprite.move(deltaX, deltaY);
+
+    }
+  } 
 }

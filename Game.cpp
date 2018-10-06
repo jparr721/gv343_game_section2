@@ -229,9 +229,5 @@ void Game::render()
     window.draw(scoreLabel);
     window.draw(playerHealth);
 
-<<<<<<< HEAD
-    window->display();
-=======
     window.display();
->>>>>>> b23caf78d1324888ca51df9bc801ef754c154b3a
 }

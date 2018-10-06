@@ -47,6 +47,9 @@ namespace intro{
          * Return: Sprite for this entity.
          *************************************************************/
         sf::Sprite getSprite();
+
+        void moveSprite( int deltaX, int deltaY);
+        void setPosition(int x, int y);
       private:
         /*A Sprite variable to hold a sprite.*/
         sf::Sprite sprite;

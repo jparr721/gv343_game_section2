@@ -104,5 +104,9 @@ namespace intro{
       soundList.close();
     }
 
+    void MovingScene::move_entity(int entityID, sf::Vector2f  move){
+      
+    }
+
   }
 }
