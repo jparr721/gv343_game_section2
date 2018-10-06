@@ -9,11 +9,10 @@
 
 class Game {
 	public:
-		Game();
+		Game(sf::RenderWindow& window);
 		int start();
 		void run();
 	private:
-		sf::RenderWindow window;
 		void processEvents();
 		void update();
 		void render();
@@ -26,6 +25,7 @@ class Game {
 		sf::Text scoreLabel;
 		sf::Text playerHealth;	
         	sf::Font font;
+		sf::RenderWindow& window;
 		
 };
 
