@@ -31,7 +31,8 @@ Game::Game(sf::RenderWindow &rw) : window(rw)
     monsters.push_back(Monster());
 
     // Add collectable to the game
-    collectables.push_back(Collectable());
+    collectables.push_back(Collectable(300, 300));
+    collectables.push_back(Collectable(200, 200));
 
     // The "standard" game font is loaded here.
     if (!font.loadFromFile("fonts/Notable-Regular.ttf"))
@@ -251,6 +252,7 @@ void Game::render()
     {
         if (cl->getActive())
         {
+            cl->tick();
             window.draw(cl->getSprite());
         }
     }
