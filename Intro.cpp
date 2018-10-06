@@ -81,10 +81,12 @@ namespace intro {
 		moving_scene::MovingScene scene(
 			"intros/entityList.txt",
 			"intros/instructionList.txt",
-			"sound buffer file",
-			"music/01 Assassin's Creed Theme.m4a",
+			"intros/soundList.txt",
+			"music/epic_hero.wav",
 			player
 		);
+
+		scene.run(window);
 
 		return 0;
 	}

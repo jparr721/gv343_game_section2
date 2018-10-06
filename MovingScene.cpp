@@ -17,14 +17,26 @@ namespace intro{
         std::string soundBufferFilename,
         std::string music,
         sf::Music &player){
+
+      //Load all the components in seperate functions
       initEntities(entitiesFilename);
       initInstructions(instructionsFilename);
+      initSounds(soundBufferFilename);
+
+      player.openFromFile(music);
 
     }
 
     void MovingScene::run(sf::RenderWindow &window){
       window.draw(entities.front().getSprite());
       window.display();
+
+      //Test code rm when done
+      sf::Clock timer;
+      float timeElapsed = 0.0f;
+      while(timeElapsed < 25.0f){
+        timeElapsed = timer.getElapsedTime().asSeconds();
+      }
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){
