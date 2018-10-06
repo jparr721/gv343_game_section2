@@ -41,5 +41,9 @@ namespace intro{
       sprite.move(deltaX, deltaY);
 
     }
+
+    void IntroEntity::setPosition(int x, int y){
+      sprite.setPosition(x,y);
+    }
   } 
 }

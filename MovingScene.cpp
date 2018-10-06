@@ -108,7 +108,7 @@ namespace intro{
       entities[entityID].moveSprite(move.x, move.y);
     }
 
-    void MovingScene::setPosition(int entityID, sf::Vector2f position){
+    void MovingScene::forcePosition(int entityID, sf::Vector2f position){
        entities[entityID].setPosition(position.x, position.y);
     }
     
@@ -133,7 +133,7 @@ namespace intro{
         updateScreen(window);
         window.draw(this->text);
         window.display();
-        timeElapsed = timer.getElapsedTime.asSeconds();
+        timeElapsed = timer.getElapsedTime().asSeconds();
       }
     }
 

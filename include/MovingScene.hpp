@@ -129,7 +129,7 @@ namespace intro{
         void initSounds(std::string &soundBufferList);
 
         void move_entity(int entityID, sf::Vector2f  move);
-        void setPosition(int entityID, sf::Vector2f positon);
+        void forcePosition(int entityID, sf::Vector2f posiston);
         void toggleEntity(int entityID);
         void displaySpeech(std::string text, sf::RenderWindow &window);
         void playSound(std::string soundname);
