@@ -77,6 +77,15 @@ namespace intro {
 			timeElapsed = clock.getElapsedTime().asSeconds();
 		}
 
+		sf::Music player;
+		moving_scene::MovingScene scene(
+			"intros/entityList.txt",
+			"intros/instructionList.txt",
+			"sound buffer file",
+			"music/01 Assassin's Creed Theme.m4a",
+			player
+		);
+
 		return 0;
 	}
 }

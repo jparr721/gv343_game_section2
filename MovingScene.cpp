@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <boost/tokenizer.hpp>
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "IntroEntity.hpp"
@@ -17,6 +18,7 @@ namespace intro{
         std::string music,
         sf::Music &player){
       initEntities(entitiesFilename);
+      initInstructions(instructionsFilename);
 
     }
 
@@ -26,38 +28,29 @@ namespace intro{
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){
-      constexpr int BUFFER_SIZE = 5; 
-
       std::ifstream entityList(entitiesFilename);
-      if(!entityList){
-        //Throw IO error 
-      }
 
-      //Define a buffer and get the first line containing the
-      //number of entities
-      std::string buffer[BUFFER_SIZE];
-      std::getline(entityList, buffer[0]);
-      int size = std::stoi(buffer[0]);
-
-      //test something 
-      for(int index = 0; index < size; ++index){
-        //Split the line
-        for(int buffer_index = 0; buffer_index < BUFFER_SIZE; 
-            ++buffer_index){
-          std::getline(entityList, buffer[buffer_index], ',');
+      std::string raw_line;
+      std::vector<std::string> data;
+      while(std::getline(entityList, raw_line)){
+        boost::tokenizer<boost::escaped_list_separator<char>> raw_split
+        {raw_line};
+        //Put the values inside the vector to be referenced 
+        for(const auto &value :raw_split){
+          data.push_back(value);
         }
 
-        //Extract the scale and position of the entity.
-        Scale scale(std::stoi(buffer[1]), std::stoi(buffer[2]));
-        Position position(std::stoi(buffer[3]), std::stoi(buffer[4]));
+        //Load an entity
+        Scale scale(std::stoi(data[1]), std::stoi(data[2]));
+        Position position(std::stoi(data[3]), std::stoi(data[4]));
 
-        entities.push_back(IntroEntity(buffer[0],scale, position));
-
+        entities.push_back(IntroEntity(data[0],scale, position));
+        data.clear();
       }
-
       entityList.close();
     }
 
+    //TODO make this use boost
     void MovingScene::initInstructions(std::string &instructionsFilename){
       constexpr int BUFFER_SIZE = 3; 
 
@@ -66,17 +59,20 @@ namespace intro{
 
       //get the number of elements in this list
       std::string buffer[BUFFER_SIZE];
-      std::getline(instructionList, buffer[0], ',');
+      std::getline(instructionList, buffer[0]);
       int size = std::stoi(buffer[0]);
 
-      //throw away the line
-      std::getline(instructionList, buffer[0]);
+      // //throw away the line
+      // std::getline(instructionList, buffer[0]);
 
       for(int index = 0; index < size; ++index){
         //Extract the line
         std::getline(instructionList, buffer[0], ',');
         std::getline(instructionList, buffer[1], ',');
         std::getline(instructionList, buffer[2]);
+
+        //TODO Remove Test
+        std::cout << buffer[0] << buffer[1] << buffer[2] <<std::endl;
 
         //Add the element to the vector
         instructions.push_back(IntroInstruction(
@@ -152,6 +148,7 @@ namespace intro{
 
     void MovingScene::updateScreen(sf::RenderWindow &window){
       sf::Event event;
+        window.clear();
         window.pollEvent(event);
       for(int index = 0; index < entities.size(); ++index){
         window.draw(entities[index].getSprite());

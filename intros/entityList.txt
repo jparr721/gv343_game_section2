@@ -1,2 +1,2 @@
-1
 sprites/person.png,1,1,1,1
+sprites/moster_one.png,1,1,5,5
