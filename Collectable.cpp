@@ -10,8 +10,6 @@ Collectable::Collectable(int startingX, int startingY)
     lastMillisecondAnimated = 0;
     this->setSprite();
     sprite.setPosition(startingX, startingY);
-
-    this->setSoundEffect();
 }
 
 // loadTexture - helper function that takes a file path and
@@ -29,11 +27,11 @@ void Collectable::loadTexture(std::string path)
 
 void Collectable::loadSoundEffect(std::string path)
 {
+
     if (!soundBuffer.loadFromFile(path))
     {
         std::cerr << "Can't load sound effect" << std::endl;
     }
-
     soundEffect.setBuffer(soundBuffer);
 }
 
@@ -48,6 +46,7 @@ sf::Sprite Collectable::getSprite()
 void Collectable::collect(Person *person)
 {
     this->collectableEffect(person);
+    this->setSoundEffect();
     soundEffect.play();
     active = false;
 }
@@ -84,6 +83,7 @@ void Collectable::setSprite()
 
 void Collectable::setSoundEffect()
 {
+    std::cout << "this happened";
     this->loadSoundEffect("sounds/coin-get.wav");
 }
 
@@ -92,6 +92,7 @@ void Collectable::collectableEffect(Person *person)
 {
     int newHealth = person->getHealth() + 20;
     person->setHealth(newHealth);
+    soundEffect.play();
 }
 
 // void
