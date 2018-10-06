@@ -9,7 +9,7 @@ namespace intro{
     IntroEntity::IntroEntity(
         std::string filename, 
         Scale scale, 
-        Position start){
+        int x, int y){
 
       if(!texture.loadFromFile(filename)){
         std::cout << "failure on texture" << std::endl;
@@ -18,7 +18,7 @@ namespace intro{
       //Set sprite's texture, scale, and starting position
       sprite.setTexture(texture);
       sprite.setScale(scale.x, scale.y);
-      sprite.setPosition(start.x, start.y);
+      sprite.setPosition(x, y);
 
       this->scale = scale;
     }
@@ -32,9 +32,7 @@ namespace intro{
       if(deltaX > 0 || deltaX < 0){
         sprite.setScale(-scale.x, scale.y);
       }
-
-      sprite.move(deltaX, deltaY);
-
+      sprite.setPosition(x+deltaX, y+deltaY);
     }
 
     void IntroEntity::setPosition(int x, int y){

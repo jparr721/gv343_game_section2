@@ -28,6 +28,8 @@ namespace intro{
     }
 
     void MovingScene::run(sf::RenderWindow &window){
+      sf::Event event;
+      window.pollEvent(event);
       window.clear();
       for(const auto &instruction: instructions){
         switch(instruction.getAction()){
@@ -42,8 +44,9 @@ namespace intro{
         }
         
       }
-      entities.front().moveSprite(0,1);
+      entities.front().moveSprite(2,2);
       window.draw(entities.front().getSprite());
+      window.pollEvent(event);
       window.display();
 
       //Test code rm when done
@@ -73,7 +76,7 @@ namespace intro{
         Scale scale(std::stoi(data[1]), std::stoi(data[2]));
         Position position(std::stoi(data[3]), std::stoi(data[4]));
 
-        entities.push_back(IntroEntity(data[0],scale, position));
+        entities.push_back(IntroEntity(data[0],scale, std::stoi(data[3]), std::stoi(data[4])));
         data.clear();
       }
       entityList.close();

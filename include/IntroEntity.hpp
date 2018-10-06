@@ -30,8 +30,11 @@ namespace intro{
          *
          * Param: filename The name of the image file being used for
          * this entity.
+         * Param: scale: gives the size of the sprite
+         * Param: x The x coordinate of this entity
+         * Param: y The y coordinate of this entity
          *************************************************************/
-        IntroEntity(std::string filename, Scale scale, Position start);
+        IntroEntity(std::string filename, Scale scale, int x, int y);
 
         /**************************************************************
          * Updates the entity's position and returns the sprite
@@ -59,6 +62,10 @@ namespace intro{
 
         /*A Vector to hold the scale of the object.*/
         Scale scale;
+
+        int x;
+
+        int y;
 
         /* A flag to say if this entity is enabled or not */
         bool enabled{true};
