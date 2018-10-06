@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <boost/tokenizer.hpp>
@@ -28,25 +29,31 @@ namespace intro{
     }
 
     void MovingScene::run(sf::RenderWindow &window){
-      sf::Event event;
-      window.pollEvent(event);
+      std::stringstream string_steam;
       window.clear();
+      
       for(const auto &instruction: instructions){
         switch(instruction.getAction()){
-          // case IntroInstruction::MOVE_ENTITY:
+          case IntroInstruction::MOVE_ENTITY:{
+            
+          }
 
-          // case IntroInstruction::SET_POSITION:
-          // case IntroInstruction::TOGGLE__ENTITY:
+          case IntroInstruction::SET_POSITION:
+          case IntroInstruction::TOGGLE__ENTITY:
 
-          // case IntroInstruction::DISPLAY_SPEECH:
-          // case IntroInstruction::PLAY_SOUND:
-          // case IntroInstruction::WAIT: 
+          case IntroInstruction::DISPLAY_SPEECH:
+          case IntroInstruction::PLAY_SOUND:
+          case IntroInstruction::WAIT: 
+          default:
+            break;
         }
+
         
       }
+      sf::Event event;
+      window.pollEvent(event);
       entities.front().moveSprite(2,2);
       window.draw(entities.front().getSprite());
-      window.pollEvent(event);
       window.display();
 
       //Test code rm when done

@@ -20,6 +20,10 @@ namespace intro{
       sprite.setScale(scale.x, scale.y);
       sprite.setPosition(x, y);
 
+      sf::Vector2f position = sprite.getPosition();
+
+      std::cout << position.x <<" " << position.y << std::endl;
+
       this->scale = scale;
     }
 
