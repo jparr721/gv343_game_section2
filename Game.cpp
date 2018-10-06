@@ -21,8 +21,7 @@
  * Default constructor.  Creates our window and sets up
  * initial state of shared variables.
  */
-Game::Game(sf::RenderWindow& window){
-    this->window = &window;
+Game::Game(sf::RenderWindow& rw) : window(rw) {
     // when done is true we quit
     done = false;
     // Add monsters to the game via a vector of Monsters.
@@ -40,7 +39,7 @@ Game::Game(sf::RenderWindow& window){
  */
 
 int Game::start(){
-    window->clear();
+    window.clear();
     sf::Texture splash;
     if(!splash.loadFromFile("./images/neighborhood.png")){
         std::cerr << "Can't load start image." << std::endl;
@@ -75,20 +74,20 @@ int Game::start(){
     }
 
     music.play();
-    while (window->isOpen())
+    while (window.isOpen())
     {
         sf::Event event;
-        while (window->pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed){
-                window->close();
+                window.close();
                 music.stop();
                 exit(0);
             }
 
             if(event.type == sf::Event::KeyPressed){
                 if(event.key.code == sf::Keyboard::Return){
-                    window->clear();
+                    window.clear();
                     music.stop();
                     return 0;
                 }
@@ -96,10 +95,10 @@ int Game::start(){
 
         }
 
-        window->draw(sprite);
-        window->draw(title);
-        window->draw(text);
-        window->display();
+        window.draw(sprite);
+        window.draw(title);
+        window.draw(text);
+        window.display();
 
         sf::Time time = clock.getElapsedTime();
         sf::Int32 mills = time.asMilliseconds();
@@ -150,12 +149,12 @@ void Game::run()
 void Game::processEvents()
 {
     sf::Event event;
-    while (window->pollEvent(event))
+    while (window.pollEvent(event))
     {
         switch (event.type)
         {
             case sf::Event::Closed:
-                window->close();
+                window.close();
                 exit(0);
 
             case sf::Event::KeyPressed:
@@ -209,14 +208,14 @@ void Game::update()
 
 void Game::render()
 {
-    window->clear();
-    window->draw(player.getSprite());
+    window.clear();
+    window.draw(player.getSprite());
     for(auto it = monsters.begin(); it != monsters.end(); ++it){
-        window->draw( it->getSprite() );
+        window.draw( it->getSprite() );
     }
     sf::RectangleShape border(sf::Vector2f(WIDTH, 20));
     border.setPosition(sf::Vector2f(0,HEIGHT));
-    window->draw(border);
+    window.draw(border);
     scoreLabel.setFont(font);
     scoreLabel.setString("Score: " + std::to_string(score));
     scoreLabel.setCharacterSize(24);
@@ -227,8 +226,12 @@ void Game::render()
     playerHealth.setString("Health " + std::to_string(player.getHealth()));
     playerHealth.setFillColor(sf::Color::White);
     playerHealth.setPosition(300, HEIGHT + 40);
-    window->draw(scoreLabel);
-    window->draw(playerHealth);
+    window.draw(scoreLabel);
+    window.draw(playerHealth);
 
+<<<<<<< HEAD
     window->display();
+=======
+    window.display();
+>>>>>>> b23caf78d1324888ca51df9bc801ef754c154b3a
 }
