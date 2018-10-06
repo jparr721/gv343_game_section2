@@ -21,6 +21,17 @@ namespace intro{
      *****************************************************************/
     class IntroInstruction{
       public:
+
+      /*A series of enumerated types to define actions*/
+        enum Action{
+          MOVE_ENTITY,
+          SET_POSITION,
+          TOGGLE__ENTITY,
+          DISPLAY_SPEECH, 
+          PLAY_SOUND,
+          WAIT
+        };
+        
         /**************************************************************
          * The constructor initalizes all of the varable. 
          *
@@ -39,6 +50,8 @@ namespace intro{
          *************************************************************/
         std::string getText() const;
 
+        Action getAction() const;
+
         /**************************************************************
          * Returns the details of the instruction as a vector. Used
          * for getting a position or a movement.
@@ -47,15 +60,7 @@ namespace intro{
          *************************************************************/
         sf::Vector2f getVector() const;
 
-        /*A series of enumerated types to define actions*/
-        enum Action :unsigned char {
-          MOVE_ENTITY,
-          SET_POSITION,
-          TOGGLE__ENTITY,
-          DISPLAY_SPEECH, 
-          PLAY_SOUND,
-          WAIT
-        };
+        
 
       private:
         /**************************************************************

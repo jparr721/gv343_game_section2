@@ -87,6 +87,7 @@ namespace intro {
 		);
 
 		scene.run(window);
+//    std::cout << "here intro" <<std::endl;
 
 		return 0;
 	}

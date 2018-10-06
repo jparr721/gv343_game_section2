@@ -14,6 +14,10 @@ namespace intro{
       IntroInstruction::initAction(action);
     }
 
+    IntroInstruction::Action IntroInstruction::getAction() const{
+      return action;
+    }
+
     std::string IntroInstruction::getText() const {
       return detail;
     }

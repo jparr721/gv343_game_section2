@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 #include "IntroEntity.hpp"
@@ -11,7 +12,7 @@ namespace intro{
         Position start){
 
       if(!texture.loadFromFile(filename)){
-        //throw error
+        std::cout << "failure on texture" << std::endl;
       }
 
       //Set sprite's texture, scale, and starting position
@@ -23,14 +24,8 @@ namespace intro{
     }
 
     sf::Sprite IntroEntity::getSprite(){
-      //if(deltaX > 0 || deltaX < 0){
-      //sprite.setScale(-scale.x, scale.y);
-      //}
-
-      //Update the sprites position
-      //sprite.move(deltaX, deltaY);
-
-      return sprite;
+      this->sprite.setTexture(texture);
+      return this->sprite;
     }
 
     void IntroEntity::moveSprite(int deltaX, int deltaY){

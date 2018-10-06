@@ -28,15 +28,32 @@ namespace intro{
     }
 
     void MovingScene::run(sf::RenderWindow &window){
+      window.clear();
+      for(const auto &instruction: instructions){
+        switch(instruction.getAction()){
+          // case IntroInstruction::MOVE_ENTITY:
+
+          // case IntroInstruction::SET_POSITION:
+          // case IntroInstruction::TOGGLE__ENTITY:
+
+          // case IntroInstruction::DISPLAY_SPEECH:
+          // case IntroInstruction::PLAY_SOUND:
+          // case IntroInstruction::WAIT: 
+        }
+        
+      }
+      entities.front().moveSprite(0,1);
       window.draw(entities.front().getSprite());
       window.display();
 
       //Test code rm when done
       sf::Clock timer;
       float timeElapsed = 0.0f;
-      while(timeElapsed < 25.0f){
+      while(timeElapsed < 5.0f){
         timeElapsed = timer.getElapsedTime().asSeconds();
       }
+      window.clear();
+      std::cout << "here done" << std::endl;
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){

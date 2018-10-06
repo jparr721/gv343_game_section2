@@ -59,6 +59,9 @@ namespace intro{
 
         /*A Vector to hold the scale of the object.*/
         Scale scale;
+
+        /* A flag to say if this entity is enabled or not */
+        bool enabled{true};
     };
   }
 }
