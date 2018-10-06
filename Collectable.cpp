@@ -2,6 +2,7 @@
 #include "Person.hpp"
 
 #include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 Collectable::Collectable(int startingX, int startingY)
 {
@@ -48,12 +49,8 @@ void Collectable::collect(Person *person)
 {
     this->collectableEffect(person);
     soundEffect.play();
-    printf("Should be called\n");
     active = false;
 }
-
-// bool Collectable::shouldAnimate() {
-// }
 
 void Collectable::tick()
 {
@@ -87,7 +84,7 @@ void Collectable::setSprite()
 
 void Collectable::setSoundEffect()
 {
-    this->loadSoundEffect("sounds/punch.wav");
+    this->loadSoundEffect("sounds/coin-get.wav");
 }
 
 //
