@@ -4,7 +4,7 @@
 #include "Person.hpp"
 #include "Monster.hpp"
 #include "SFML/Graphics.hpp"
-#include "Collectible.hpp"
+#include "Collectable.hpp"
 #include <vector>
 
 class Game {
@@ -18,7 +18,7 @@ class Game {
 		void render();
 
 		std::vector<Monster> monsters;
-		std::vector<Collectible> collectibles;
+		std::vector<Collectable> collectables;
 		Person player;
 		bool done;
 		int score;

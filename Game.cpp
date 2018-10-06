@@ -12,7 +12,7 @@
 #include "Person.hpp"
 #include "Monster.hpp"
 #include "Settings.hpp"
-#include "Collectible.hpp"
+#include "Collectable.hpp"
 #include <iostream>
 #include <random>
 #include "SFML/Audio.hpp"
@@ -30,8 +30,8 @@ Game::Game(sf::RenderWindow &rw) : window(rw)
     // Add monsters to the game via a vector of Monsters.
     monsters.push_back(Monster());
 
-    // Add collectible to the game
-    collectibles.push_back(Collectible());
+    // Add collectable to the game
+    collectables.push_back(Collectable());
 
     // The "standard" game font is loaded here.
     if (!font.loadFromFile("fonts/Notable-Regular.ttf"))
@@ -219,11 +219,11 @@ void Game::update()
         }
     }
 
-    for (auto col = collectibles.begin(); col != collectibles.end(); ++col)
+    for (auto col = collectables.begin(); col != collectables.end(); ++col)
     {
         if (Collision::BoundingBoxTest(player.getSprite(), col->getSprite()) && col->getActive())
         {
-            col->processCollectible(&player);
+            col->collect(&player);
         }
     }
 
@@ -247,7 +247,7 @@ void Game::render()
         window.draw(it->getSprite());
     }
 
-    for (auto cl = collectibles.begin(); cl != collectibles.end(); ++cl)
+    for (auto cl = collectables.begin(); cl != collectables.end(); ++cl)
     {
         if (cl->getActive())
         {
