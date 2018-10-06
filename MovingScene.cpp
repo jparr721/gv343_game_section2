@@ -105,8 +105,58 @@ namespace intro{
     }
 
     void MovingScene::move_entity(int entityID, sf::Vector2f  move){
-      
+      entities[entityID].moveSprite(move.x, move.y);
     }
 
+    void MovingScene::setPosition(int entityID, sf::Vector2f position){
+       entities[entityID].setPosition(position.x, position.y);
+    }
+    
+    void MovingScene::toggleEntity(int entityID){
+      //TODO Make this function in the entity class
+      //entities[entityID].toggle()
+    }
+
+    void MovingScene::displaySpeech(std::string text, sf::RenderWindow &window){
+      constexpr float MAX_TIME = 3.0f;
+
+      //Set the Text object
+      this->text.setString(text);
+      this->text.setCharacterSize(24);
+
+      //Declare timers.
+      float timeElapsed = 0.0f;
+      sf::Clock timer;
+
+      
+      while(timeElapsed < MAX_TIME){
+        updateScreen(window);
+        window.draw(this->text);
+        window.display();
+        timeElapsed = timer.getElapsedTime.asSeconds();
+      }
+    }
+
+    void MovingScene::playSound(std::string soundname){
+
+    }
+
+    void MovingScene::wait(float time, sf::RenderWindow &window){
+      //Declare timers.
+      float timeElapsed = 0.0f;
+      sf::Clock timer;
+      while(timeElapsed < time){
+        updateScreen(window);
+      }
+    }
+
+    void MovingScene::updateScreen(sf::RenderWindow &window){
+      sf::Event event;
+        window.pollEvent(event);
+      for(int index = 0; index < entities.size(); ++index){
+        window.draw(entities[index].getSprite());
+      }
+      //Have the display function happen in where this was called.
+    }
   }
 }
