@@ -42,13 +42,6 @@ sf::Sprite Person::getSprite(){
 	return this->sprite;
 }
 
-sf::Sprite Person::getLeftSprite(){
-	return this->sprite;
-}
-
-sf::Sprite Person::getRightSprite(){
-	return this->sprite;	
-}
 int Person::getHealth(){
 	return this->health;
 }
@@ -57,15 +50,26 @@ void Person::setHealth(int health){
 	this->health = health;
 }
 
+/****************************************************************
+ * updateSprite uses the clock function as well as the direction
+ * of the sprite passed to it via a parameter to decide on the 
+ * sprite's appearance.
+ * @param d Direction the sprite is facing (0 if left, 1 if right)
+ * **************************************************************/
+
 void Person::updateSprite(int d){
+
+	/* Instantiates clock*/
 	sf::Time time = clock.getElapsedTime();
 	sf::Int32 mills = time.asMilliseconds();
 
+	/* Check for idle state*/
 	if (mills % 1000 > 500)
 		state = 2;
 	 else
 		state = 1;
 
+	/* Assigns sprite the right texture on state and direction*/
 	if(d == 0){ 
 		if(state == 1){
 			sprite.setTexture(left2);
@@ -101,6 +105,7 @@ void Person::updatePosition(int dx, int dy){
 	if(dx < 0){
 		direction = 0;
 	}
+	/* Calls updateSprite to change appearance*/
 	updateSprite(direction);
 	sprite.setPosition(x,y);
 }
@@ -110,10 +115,18 @@ void Person::harm(int hp){
 	punch.play();
 }
 
+/*****************************************************
+ * Assigns speed based on parameter
+ * @param s New value for speed
+ * **************************************************/
 void Person::setSpeed(float s){
 	this->speed = s;
 }
 
+/*****************************************************
+ * Returns speed
+ * @return this->speed
+ * **************************************************/
 float Person::getSpeed(){
 	return this->speed;
 }

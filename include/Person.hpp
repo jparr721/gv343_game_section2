@@ -15,9 +15,7 @@ class Person {
 		void updatePosition(int x, int y);
 		void setSpeed(float s);
 		float getSpeed();
-		void updateSprite(int d);
-		sf::Sprite getLeftSprite();
-		sf::Sprite getRightSprite();	
+		void updateSprite(int d);	
 	private:
 		sf::Sprite sprite;
 		sf::Texture texture;
