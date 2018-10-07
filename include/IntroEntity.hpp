@@ -53,6 +53,8 @@ namespace intro{
 
         void moveSprite( int deltaX, int deltaY);
         void setPosition(int x, int y);
+        bool isEnabled() const;
+        void setEnabled(bool enabled);
       private:
         /*A Sprite variable to hold a sprite.*/
         sf::Sprite sprite;

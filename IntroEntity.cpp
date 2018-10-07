@@ -42,5 +42,13 @@ namespace intro{
     void IntroEntity::setPosition(int x, int y){
       sprite.setPosition(x,y);
     }
+
+    bool IntroEntity::isEnabled() const{
+      return enabled;
+    }
+
+    void IntroEntity::setEnabled(bool enabled){
+      this->enabled = enabled;
+    }
   } 
 }

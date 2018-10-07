@@ -67,7 +67,6 @@ namespace intro{
 
 				timeElapsed = timer.getElapsedTime().asSeconds();
 			}
-			std::cout << "here done" << std::endl;
 		}
 
 		void  MovingScene::initEntities(std::string &entitiesFilename){
@@ -190,13 +189,12 @@ namespace intro{
 		}
 
 		void MovingScene::updateScreen(sf::RenderWindow &window){
-			sf::Event event;
 			window.clear();
-			window.pollEvent(event);
-			for(int index = 0; index < entities.size(); ++index){
-				window.draw(entities[index].getSprite());
-			}
-			//Have the display function happen in where this was called.
+      for(int i = 0; i < entities.size(); ++i){
+        if(entities[i].isEnabled()){
+          window.draw(entities[i].getSprite());
+        }
+      }
 		}
 	}
 }
