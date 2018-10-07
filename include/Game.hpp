@@ -5,7 +5,6 @@
 #include "Monster.hpp"
 #include "SFML/Graphics.hpp"
 #include <vector>
-#include "Credits.hpp"
 
 class Game {
 	public:

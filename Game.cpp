@@ -7,7 +7,6 @@
  * You will need to read SFML API and other documentation to understand this code
  */
 
-#include "Credits.hpp"
 #include "Collision.hpp"
 #include "Game.hpp"
 #include "Person.hpp"

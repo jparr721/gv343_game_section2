@@ -44,8 +44,8 @@ Credits::Credits(){
 		{"HIGH SCORE TEAM", "Ben Townsend", "AJ Natzic", "Rose Ault", "Clay Negen"}, 
 		{"MONSTERS TEAM", "Logan DeLeon", "Ryan Eisenbarth", "Shawn Greene", "Eric Blanchet"},
 		{"WEAPONS TEAM", "Johnathon Killeen", "Quinn Meagher", "Emillio Braun", "Joe Stahle"},	
-		{"MUSIC"},
-		{"IMAGES"}};
+		{"MUSIC", "Akashic_Records_-_Epic_Action_Hero.mp3 CC Jamendo", "Nico_Maximilian___Composer_-_Fight__Cinematic___Action_Music_.mp3 CC Jamendo"},
+		{"IMAGES", "https://en.wikipedia.org/wiki/Tract_housing#/media/File:Markham-suburbs_aerial-edit2.jpg"}};
 }
 
 int Credits::start(sf::RenderWindow &rw){
@@ -114,8 +114,8 @@ int Credits::start(sf::RenderWindow &rw){
 			switch (event.type)
 			{	//Adds working exit button
 				case sf::Event::Closed:
-					window->close();
-					exit(0);
+					window -> clear();
+					return 0;
 					break;
 
 				case sf::Event::KeyPressed:
@@ -126,8 +126,8 @@ int Credits::start(sf::RenderWindow &rw){
 							break;
 							//Adds another exit option
 						case sf::Keyboard::Escape:
-							window->close();
-							exit(0);
+							window -> clear();
+							return 0;
 							break;
 
 						default:
