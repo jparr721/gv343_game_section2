@@ -13,15 +13,27 @@ class Person {
 		sf::Sprite getSprite();
 		void harm(int hp);
 		void updatePosition(int x, int y);
-		
+		void setSpeed(float s);
+		float getSpeed();
+		void updateSprite(int d);
+		sf::Sprite getLeftSprite();
+		sf::Sprite getRightSprite();	
 	private:
 		sf::Sprite sprite;
 		sf::Texture texture;
+		sf::Texture left1;
+		sf::Texture right1;
+		sf::Texture left2;
+		sf::Texture right2;
+		int state;
+		int direction;
 		int x;
 		int y;
 		int health;
+		float speed;
 		sf::SoundBuffer punchBuffer;
 		sf::Sound punch;
+		sf::Clock clock;
 };
 
 #endif

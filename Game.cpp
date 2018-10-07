@@ -152,6 +152,7 @@ void Game::run()
 void Game::processEvents()
 {
 	sf::Event event;
+	player.updatePosition(0, 0);
 	while (window.pollEvent(event))
 	{
 		switch (event.type)
@@ -176,6 +177,7 @@ void Game::processEvents()
 					player.updatePosition(0, 20);
 					break;
 					default:
+					player.updatePosition(0,0);
 					break;
 				}				
 			default:
