@@ -5,6 +5,7 @@
 #include "Monster.hpp"
 #include "SFML/Graphics.hpp"
 #include <vector>
+#include "Credits.hpp"
 
 class Game {
 	public:
@@ -24,7 +25,6 @@ class Game {
 		sf::Text playerHealth;	
         	sf::Font font;
 		sf::RenderWindow& window;
-		
 };
 
 #endif
