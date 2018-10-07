@@ -16,6 +16,10 @@ protected:
     int collectableEffect(Person* person);
     void setSprite();
     void setSoundEffect();
+    void animate();
+
+private:
+    int animationCallCount = 0;
 };
 
 #endif

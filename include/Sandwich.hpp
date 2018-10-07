@@ -16,6 +16,7 @@ protected:
     int collectableEffect(Person* person);
     void setSprite();
     void setSoundEffect();
+    void animate();
 };
 
 #endif

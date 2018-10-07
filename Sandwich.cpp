@@ -9,7 +9,10 @@ Sandwich::Sandwich(int startingX, int startingY) : Collectable(startingX, starti
 }
 
 void Sandwich::setSprite() {
-    this->loadTexture("sprites/0x72_DungeonTilesetII_v1.png", sf::IntRect(289, 225, 18, 18));
+    this->loadTexture(
+        "sprites/0x72_DungeonTilesetII_v1.png",
+        sf::IntRect(289, 225, 18, 18)
+    );
 }
 
 void Sandwich::setSoundEffect() {
@@ -20,4 +23,8 @@ int Sandwich::collectableEffect(Person *person) {
     int newHealth = person->getHealth() + 20;
     person->setHealth(newHealth);
     return 0;
+}
+
+void Sandwich::animate() {
+
 }
