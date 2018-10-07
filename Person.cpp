@@ -50,3 +50,11 @@ void Person::harm(int hp){
 	health = health - hp;
 	punch.play();
 }
+
+int Person::getX() {
+	return x;
+}
+
+int Person::getY() {
+	return y;
+}

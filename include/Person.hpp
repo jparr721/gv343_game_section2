@@ -7,21 +7,22 @@
 class Person {
 	public:
 		Person();
-		int x;
-		int y;
 		void initialize();
 		int getHealth();
 		void setHealth(int health);
 		sf::Sprite getSprite();
 		void harm(int hp);
 		void updatePosition(int x, int y);
-		
+		int getX();
+		int getY();
 	private:
 		sf::Sprite sprite;
 		sf::Texture texture;
 		int health;
 		sf::SoundBuffer punchBuffer;
 		sf::Sound punch;
+		int x;
+		int y;
 };
 
 #endif

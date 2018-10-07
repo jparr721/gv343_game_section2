@@ -3,7 +3,6 @@
 
 #include "SFML/Graphics.hpp"
 #include <string>
-
 class Monster {
 	protected:
 		int health;
@@ -15,6 +14,8 @@ class Monster {
 		int movement_speed;
 		int attackPower;
 		bool followPlayer;
+		sf::Clock clock;
+		float refreshRate;
 
 	public:
 		Monster();

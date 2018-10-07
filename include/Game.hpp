@@ -11,7 +11,6 @@ class Game {
 		Game();
 		int start();
 		void run();
-		sf::Clock clock;
 	private:
 		sf::RenderWindow window;
 		void processEvents();

@@ -10,13 +10,14 @@ Monster::Monster(){
 	}
 	this->health = 10;
 	this->movement_speed = 5;
-	this->x = 0;
-	this->y = 0;
+	this->x = 100;
+	this->y = 100;
 	this->followPlayer = true;
 	sprite.setTexture(texture);
 	sf::FloatRect spriteSize = sprite.getGlobalBounds();
 	sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
 	sprite.setPosition(100,100);
+	refreshRate = 1 / 60;
 }
 
 int Monster::getHealth(){
@@ -28,26 +29,29 @@ void Monster::harm(int amount){
 }
 
 void Monster::updatePosition(int x, int y){
-	float dist = sqrt(
-			          (this->x - x) * (this->x - x) +
-			          (this->y - y) * (this->y - y)
-			         );
-	float angle = atan2(y - this->y, x - this->x);
-	int dx = int(this->movement_speed * cos(angle));
-	int dy = int(this->movement_speed * sin(angle));
-	if (dist <= 1000) {
-		if (this->x < x) {
-			this->x += dx;
-		} else if (this->x > x) {
-			this->x -= dx;
+	if (clock.getElapsedTime().asSeconds() > refreshRate) {
+		float dist = sqrt(
+				(this->x - x) * (this->x - x) +
+				(this->y - y) * (this->y - y)
+				);
+		float angle = atan2(y - this->y, x - this->x);
+		int dx = int(this->movement_speed * cos(angle));
+		int dy = int(this->movement_speed * sin(angle));
+		if (dist <= 1000) {
+			if (this->x < x) {
+				this->x += dx;
+			} else if (this->x > x) {
+				this->x -= dx;
+			}
+			if (this->y < y) {
+				this->y += dy;
+			} else if (this->y > y) {
+				this->y -= dy;
+			}
 		}
-		if (this->y < y) {
-			this->y += dy;
-		} else if (this->y > y) {
-			this->y -= dy;
-		}
+		sprite.setPosition(this->x, this->y);
+		clock.restart();
 	}
-	sprite.setPosition(this->x, this->y);
 }
 
 sf::Sprite Monster::getSprite(){
