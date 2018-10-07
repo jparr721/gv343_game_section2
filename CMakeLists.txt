@@ -19,7 +19,9 @@ set(SOURCE_FILES
         Monster.cpp
         Person.cpp Intro.cpp
         Animator.cpp
-        Collectable.cpp)
+        Collectable.cpp
+        Coin.cpp
+        Sandwich.cpp)
 
 add_executable(CIS_343_02 ${SOURCE_FILES})
 target_link_libraries(CIS_343_02 sfml-graphics sfml-audio sfml-window sfml-system)

@@ -13,18 +13,19 @@ class Collectable {
 		sf::Sprite sprite;
 		sf::Clock clock;
 		int lastMillisecondAnimated;
-		bool active;
 		sf::SoundBuffer soundBuffer;
-		sf::Sound soundEffect;
 
-		void loadTexture(std::string path);
+    protected:
+        sf::Sound soundEffect;
+        bool active;
+		void loadTexture(std::string path, sf::IntRect rect);
 		void loadSoundEffect(std::string path);
 		bool shouldAnimate();
 		void animate();
 
-		void collectableEffect(Person* person);
-		void setSprite();
-		void setSoundEffect();
+		virtual void collectableEffect(Person* person) = 0;
+		virtual void setSprite() = 0;
+		virtual void setSoundEffect() = 0;
 
 	public:
 		Collectable(int startingX, int startingY);

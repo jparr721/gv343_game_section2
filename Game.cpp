@@ -12,7 +12,8 @@
 #include "Person.hpp"
 #include "Monster.hpp"
 #include "Settings.hpp"
-#include "Collectable.hpp"
+#include "Coin.hpp"
+#include "Sandwich.hpp"
 #include <iostream>
 #include <random>
 #include "SFML/Audio.hpp"
@@ -31,8 +32,8 @@ Game::Game(sf::RenderWindow &rw) : window(rw)
     monsters.push_back(Monster());
 
     // Add collectable to the game
-    collectables.push_back(Collectable(300, 300));
-    collectables.push_back(Collectable(200, 200));
+    collectables.push_back(new Coin(300, 300));
+    collectables.push_back(new Sandwich(200, 200));
 
     // The "standard" game font is loaded here.
     if (!font.loadFromFile("fonts/Notable-Regular.ttf"))
@@ -222,9 +223,9 @@ void Game::update()
 
     for (auto col = collectables.begin(); col != collectables.end(); ++col)
     {
-        if (Collision::BoundingBoxTest(player.getSprite(), col->getSprite()) && col->getActive())
+        if (Collision::BoundingBoxTest(player.getSprite(), (*col)->getSprite()) && (*col)->getActive())
         {
-            col->collect(&player);
+            (*col)->collect(&player);
         }
     }
 
@@ -250,10 +251,10 @@ void Game::render()
 
     for (auto cl = collectables.begin(); cl != collectables.end(); ++cl)
     {
-        if (cl->getActive())
+        if ((*cl)->getActive())
         {
-            cl->tick();
-            window.draw(cl->getSprite());
+            (*cl)->tick();
+            window.draw((*cl)->getSprite());
         }
     }
 

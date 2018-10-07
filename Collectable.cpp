@@ -8,21 +8,20 @@ Collectable::Collectable(int startingX, int startingY)
 {
     active = true;
     lastMillisecondAnimated = 0;
-    this->setSprite();
     sprite.setPosition(startingX, startingY);
 }
 
 // loadTexture - helper function that takes a file path and
 // loads that texture into the instances `sprite` variable
-void Collectable::loadTexture(std::string path)
+void Collectable::loadTexture(std::string path, sf::IntRect rect)
 {
     if (!texture.loadFromFile(path))
     {
         std::cerr << "Can't load sprite." << std::endl;
         exit(EXIT_FAILURE);
     }
-
     sprite.setTexture(texture);
+    sprite.setTextureRect(rect);
 }
 
 void Collectable::loadSoundEffect(std::string path)
@@ -73,27 +72,37 @@ bool Collectable::getActive()
 
 // Override to set the collectable's sprite path
 // and dimensions
-void Collectable::setSprite()
-{
-    this->loadTexture("sprites/0x72_DungeonTilesetII_v1.png");
-
-    // sprite.setTextureRect(sf::IntRect(289,273,9,9));
-    sprite.setTextureRect(sf::IntRect(298, 273, 9, 9));
-}
-
-void Collectable::setSoundEffect()
-{
-    std::cout << "this happened";
-    this->loadSoundEffect("sounds/coin-get.wav");
-}
+//void Collectable::setSprite()
+//{
+//    this->loadTexture("sprites/0x72_DungeonTilesetII_v1.png", sf::IntRect(298, 273, 9, 9));
+//}
+//
+//void Collectable::setSoundEffect()
+//{
+//    this->loadSoundEffect("sounds/coin-get.wav");
+//}
+//
+//void Collectable::collectableEffect(Person *person)
+//{
+//    int newHealth = person->getHealth() + 20;
+//    person->setHealth(newHealth);
+//}
+////
+//void Collectable::collectableEffect(Person *person)
+//{
+//}
+//
+//void Collectable::setSprite()
+//{
+//}
+//
+//void Collectable::setSoundEffect()
+//{
+//}
 
 //
-void Collectable::collectableEffect(Person *person)
-{
-    int newHealth = person->getHealth() + 20;
-    person->setHealth(newHealth);
-    soundEffect.play();
-}
+
+
 
 // void
 

@@ -18,7 +18,7 @@ class Game {
 		void render();
 
 		std::vector<Monster> monsters;
-		std::vector<Collectable> collectables;
+		std::vector<Collectable*> collectables;
 		Person player;
 		bool done;
 		int score;
