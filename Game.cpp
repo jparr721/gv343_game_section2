@@ -7,6 +7,7 @@
  * You will need to read SFML API and other documentation to understand this code
  */
 
+#include "Credits.hpp"
 #include "Collision.hpp"
 #include "Game.hpp"
 #include "Person.hpp"
@@ -30,6 +31,7 @@ Game::Game(sf::RenderWindow& rw) : window(rw) {
     if(!font.loadFromFile("fonts/Notable-Regular.ttf")){
         std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
     }
+
 }
 
 /*
