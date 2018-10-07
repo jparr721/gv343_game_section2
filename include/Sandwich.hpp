@@ -13,7 +13,7 @@ public:
     Sandwich(int startingX, int startingY);
 
 protected:
-    void collectableEffect(Person* person);
+    int collectableEffect(Person* person);
     void setSprite();
     void setSoundEffect();
 };

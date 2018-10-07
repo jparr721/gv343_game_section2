@@ -42,12 +42,12 @@ sf::Sprite Collectable::getSprite()
     return this->sprite;
 }
 
-void Collectable::collect(Person *person)
+int Collectable::collect(Person *person)
 {
-    this->collectableEffect(person);
     this->setSoundEffect();
     soundEffect.play();
     active = false;
+    return this->collectableEffect(person);
 }
 
 void Collectable::tick()
@@ -88,19 +88,6 @@ bool Collectable::getActive()
 //    person->setHealth(newHealth);
 //}
 ////
-//void Collectable::collectableEffect(Person *person)
-//{
-//}
-//
-//void Collectable::setSprite()
-//{
-//}
-//
-//void Collectable::setSoundEffect()
-//{
-//}
-
-//
 
 
 

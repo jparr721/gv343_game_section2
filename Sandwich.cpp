@@ -16,7 +16,8 @@ void Sandwich::setSoundEffect() {
     this->loadSoundEffect("sounds/bite.wav");
 }
 
-void Sandwich::collectableEffect(Person *person) {
+int Sandwich::collectableEffect(Person *person) {
     int newHealth = person->getHealth() + 20;
     person->setHealth(newHealth);
+    return 0;
 }

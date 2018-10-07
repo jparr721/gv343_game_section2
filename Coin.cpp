@@ -16,7 +16,6 @@ void Coin::setSoundEffect() {
     this->loadSoundEffect("sounds/coin-get.wav");
 }
 
-void Coin::collectableEffect(Person *person) {
-    int newHealth = person->getHealth() + 21;
-    person->setHealth(newHealth);
+int Coin::collectableEffect(Person *person) {
+    return 1;
 }

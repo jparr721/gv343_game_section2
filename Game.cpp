@@ -225,7 +225,7 @@ void Game::update()
     {
         if (Collision::BoundingBoxTest(player.getSprite(), (*col)->getSprite()) && (*col)->getActive())
         {
-            (*col)->collect(&player);
+            score += (*col)->collect(&player);
         }
     }
 

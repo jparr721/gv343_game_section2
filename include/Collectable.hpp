@@ -23,7 +23,7 @@ class Collectable {
 		bool shouldAnimate();
 		void animate();
 
-		virtual void collectableEffect(Person* person) = 0;
+		virtual int collectableEffect(Person* person) = 0;
 		virtual void setSprite() = 0;
 		virtual void setSoundEffect() = 0;
 
@@ -31,7 +31,7 @@ class Collectable {
 		Collectable(int startingX, int startingY);
 		void tick();
 		sf::Sprite getSprite();
-		void collect(Person* person);
+		int collect(Person* person);
 		bool getActive();
 };
 
