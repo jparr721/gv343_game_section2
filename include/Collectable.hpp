@@ -18,12 +18,108 @@ class Collectable {
 		sf::Clock clock;
 		int lastMillisecondAnimated;
 		bool active;
+
+		/*
+		 * loadTexture - A helper function that takes a file path with a
+		 *		 bounding rectangle and loads that texture into
+		 *		 the instances `sprite` variable
+		 * 
+		 * @param std::string path - The filepath where the texture sprite
+		 * 			      file is located
+		 * 
+		 * @param sf::IntRect rect - A rectangle which provides the bounds
+		 * 			     of the sprite
+		 * 				     (eg: sf::IntRect(298, 273, 9, 9))
+		 *
+		 * @return void
+		 *
+		 */
 		void loadTexture(std::string path, sf::IntRect rect);
+
+		/*
+		 * loadSoundEffect - A helper function that takes a file path and
+		 * 		     loads the sound file into the instance, which
+		 * 		     gets played once collected
+		 *
+		 * @param std::string path - The filepath where the sound effect
+		 * 			     file is located
+		 *
+		 * @return void
+		 *
+		 */
 		void loadSoundEffect(std::string path);
 
+		/*
+		 *
+		 *    OVERRIDABLE METHODS
+		 *
+		 *    Inherit from this class and override these methods to provide
+		 *    the unique characteristics to your collectable
+		 *
+		 */
+
+
+		/*
+		 * collectableEffect - Called by the parent class when `collect()`
+		 *		       is called. Given a person pointer, modify
+		 *		       anything which your collectable does.
+		 *
+		 * @param Person* person - A pointer to a person object
+		 *
+		 * @return void
+		 *
+		 */
 		virtual int collectableEffect(Person* person) = 0;
+
+		/*
+		 * setSprite - Where your collectable defines the sprite configuration.
+		 *	       Due to the nature of sprite loading, for now this function
+		 *	       must be called within any child class which inherits from
+		 *	      `Collectable`. 
+		 *
+		 *	       Example usage:
+		 *
+		 *	       ```
+		 *	       void MyCollectable::setSprite() {
+		 *	           this->loadTexture(
+		 *	                "spriteFileLocation.png",
+		 *	                sf::IntRect(298, 273, 9, 9)
+		 *	           );
+		 *	       }
+		 *	       ```
+		 *
+		 * @return void
+		 *
+		 */
 		virtual void setSprite() = 0;
+
+		/*
+		 * setSoundEffect - Where your collectable defines the sound effect location.
+		 * 
+		 * 		    Example usage:
+		 * 
+		 * 		    ```
+		 * 		    void MyCollectable::setSoundEffect() {
+		 *		        this->loadSoundEffect("locationOfMySoundEffect.wav");
+		 *		    }
+		 *		    ```
+		 */
 		virtual void setSoundEffect() = 0;
+
+		/*
+		 * animate - This function will be called by the parent class every 16ms
+		 * 	     to provide 60fps animations. Leverage this to keep track of
+		 * 	     call counts and set new textures based on time intervals.
+		 * 
+		 * 	     To set the texture:
+		 *
+		 *	     ```
+		 *	      sprite.setTextureRect(sf::IntRect(300, 200, 10, 10));
+		 *           ```
+		 *
+		 * @return void
+		 *
+		 */
 		virtual void animate() = 0;
 
 	public:
