@@ -12,6 +12,8 @@
 #include "Person.hpp"
 #include "Monster.hpp"
 #include "Settings.hpp"
+#include "Coin.hpp"
+#include "Sandwich.hpp"
 #include <iostream>
 #include <random>
 #include "SFML/Audio.hpp"
@@ -27,6 +29,11 @@ Game::Game(sf::RenderWindow& rw) : window(rw) {
 	done = false;
 	// Add monsters to the game via a vector of Monsters.
 	monsters.push_back(Monster());
+
+        // Add collectable to the game
+        collectables.push_back(new Coin(300, 300));
+        collectables.push_back(new Sandwich(200, 200));
+
 	// The "standard" game font is loaded here.
 	if(!font.loadFromFile("fonts/Notable-Regular.ttf")){
 		std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
@@ -247,6 +254,13 @@ void Game::update()
 		}
 
 	}
+        for (auto col = collectables.begin(); col != collectables.end(); ++col)
+        {
+            if (Collision::BoundingBoxTest(player.getSprite(), (*col)->getSprite()) && (*col)->getActive())
+            {
+                score += (*col)->collect(&player);
+            }
+        }
 	if(player.getHealth() <= 0){
 		done = true;
 	}
@@ -268,6 +282,16 @@ void Game::render()
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		window.draw( it->getSprite() );
 	}
+
+        for (auto cl = collectables.begin(); cl != collectables.end(); ++cl)
+        {
+            if ((*cl)->getActive())
+            {
+                (*cl)->tick();
+                window.draw((*cl)->getSprite());
+            }
+        }
+
 	sf::RectangleShape border(sf::Vector2f(WIDTH, 20));
 	border.setPosition(sf::Vector2f(0,HEIGHT));
 	window.draw(border);

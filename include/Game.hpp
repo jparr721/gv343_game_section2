@@ -5,6 +5,7 @@
 #include "Monster.hpp"
 #include "Weapons.hpp"
 #include "SFML/Graphics.hpp"
+#include "Collectable.hpp"
 #include <vector>
 #include "SFML/System.hpp"
 
@@ -19,6 +20,7 @@ class Game {
 		void render();
 
 		std::vector<Monster> monsters;
+		std::vector<Collectable*> collectables;
 		Person player;
 		Weapons weapon;
 		bool done;
