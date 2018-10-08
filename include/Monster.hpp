@@ -102,4 +102,25 @@ class Orc: public Monster {
 		*/
 		Orc();
 };
+
+class Specter: public Monster {
+	private:
+
+	public:
+		/**
+		Constructor sets sprite to Specter sprite
+		*/
+		Specter();
+};
+
+class Boss: public Monster {
+	private:
+
+	public:
+		/**
+		The boss constructor
+		*/
+		Boss();
+};
+
 #endif
