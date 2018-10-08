@@ -3,13 +3,25 @@
 #include "Settings.hpp"
 #include <iostream>
 
-void Weapons::initalize(){
-    range = 0;
-    damage = 0;
-    equipped = false;
-    clock = 0;
+Weapons::Weapons(){
+    if(!texture.loadFromFile("sprites/ak.png")){
+        std::cerr << "Can't load sprite." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    sprite.setTexture(texture);
+    sf::FloatRect spriteSize = sprite.getGlobalBounds();
+    sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
+    sprite.setPosition(WIDTH/2,(HEIGHT/2)-20);
 }
 
+void Weapons::initalize(){
+    range = 0;
+    damage = 10;
+    equipped = false;
+    x = WIDTH / 2;
+    y = HEIGHT / 2;
+    sprite.setPosition(x, y);
+}
 void Weapons::setWeapon(int range, int damage, sf::Sprite sprite,bool equipped){
     this->range = range;
     this->damage = damage;
@@ -32,24 +44,29 @@ void Weapons::setDamage(int damage){
 int Weapons::getDamage(){
     return damage;
 }
-void Weapons::setPosition(int x, int y){
-    this->x = x;
-    this->y = y;
+int Weapons::getX(){
+    return this-> x;
+}
+int Weapons::getY(){
+    return this->y;
+}
+void Weapons::setPosition(int dx, int dy){
+    if( (x+dx) > 0 && (x+dx) < WIDTH ){
+        x = x + dx;
+    }
+    if ( (y+dy) > 0 && (y+dy) < HEIGHT ){
+        y = y + dy;
+    }
+    sprite.setPosition(x,y);
 }
 
-void attack(){
-    sf::Time time = clock.getElapsedTime();
-    sf::Int32 mills = time.asMilliseconds();
-
-    if(mills % 1000 > 500){
-        int range = Weapons::getRange();
-        int damage = Weapons::getDamage();
-        //attack these dudes
-        //I'm trying to make a way to put a delay between attacks
-        //god help me
-    }
+void Weapons::damageMonster(std::vector<Monster> &monsters, int damage){
+    std::cout << monsters[0].getHealth() << std::endl;
+    monsters[0].harm(damage);
+    std::cout << monsters[0].getHealth() << std::endl;
 }
 
 sf::Sprite Weapons::getSprite(){
-    return Weapons::sprite;
+    sprite.setTexture(texture);
+    return this->sprite;
 }
