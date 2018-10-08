@@ -29,6 +29,16 @@ void Monster::harm(int amount){
 }
 
 void Monster::updatePosition(int x, int y){
+	move(x,y);
+	sprite.setPosition(this->x, this->y);
+}
+
+sf::Sprite Monster::getSprite(){
+	sprite.setTexture(texture);
+	return this->sprite;
+}
+
+void Monster::move(int x, int y){
 	if (clock.getElapsedTime().asSeconds() > refreshRate) {
 		float dist = sqrt(
 				(this->x - x) * (this->x - x) +
@@ -49,17 +59,7 @@ void Monster::updatePosition(int x, int y){
 				this->y -= dy;
 			}
 		}
-		sprite.setPosition(this->x, this->y);
 		clock.restart();
 	}
-}
-
-sf::Sprite Monster::getSprite(){
-	sprite.setTexture(texture);
-	return this->sprite;
-}
-
-void Monster::move(int x, int y){
-
 }
 
