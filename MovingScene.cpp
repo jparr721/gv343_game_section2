@@ -119,45 +119,37 @@ namespace intro{
       float addedWait = 0.0f;
 
       IntroInstruction  &instruction = instructions.front();
-      std::cout << instruction.getDetail() << std::endl;
       switch(instruction.getAction()){
-
           case IntroInstruction::MOVE_ENTITY:{
-            std::cout << "Move" << std::endl;
             move_entity(instruction.getEntityID(),
                 convertToVec(instruction.getDetail()));
             break;
           }
 
           case IntroInstruction::SET_POSITION:{
-            std::cout << "Set_Pos" << std::endl;
             forcePosition(instruction.getEntityID(),
                 convertToVec(instruction.getDetail()));
             break;
           }
 
           case IntroInstruction::TOGGLE_ENTITY:{
-            std::cout << "Toggle" << std::endl;
             toggleEntity(instruction.getEntityID());
             break;
           }
 
           case IntroInstruction::DISPLAY_SPEECH:{
-            std::cout << "Speech" << std::endl;
             displaySpeech(instruction.getDetail());
             addedWait = 3.0f;
             break;
           }
 
           case IntroInstruction::PLAY_SOUND:{
-            std::cout << "Sound" << std::endl;
             playSound(convertToInt(instruction.getDetail()));
             addedWait = 1.5f;
             break;
           }
 
           case IntroInstruction::WAIT:{
-            std::cout << "Wait" << std::endl;
             addedWait = (float) convertToInt(instruction.getDetail());
             break;
           }
