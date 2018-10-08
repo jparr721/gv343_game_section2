@@ -15,14 +15,25 @@ class Person {
 		void updatePosition(int x, int y);
 		int getX();
 		int getY();
+		void setSpeed(float s);
+		float getSpeed();
+		void updateSprite(int d);	
 	private:
 		sf::Sprite sprite;
 		sf::Texture texture;
-		int health;
-		sf::SoundBuffer punchBuffer;
-		sf::Sound punch;
+		sf::Texture left1;
+		sf::Texture right1;
+		sf::Texture left2;
+		sf::Texture right2;
+		int state;
+		int direction;
 		int x;
 		int y;
+		int health;
+		float speed;
+		sf::SoundBuffer punchBuffer;
+		sf::Sound punch;
+		sf::Clock clock;
 };
 
 #endif
