@@ -24,7 +24,6 @@ class Game {
 		sf::Text playerHealth;	
         	sf::Font font;
 		sf::RenderWindow& window;
-		
 };
 
 #endif

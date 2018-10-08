@@ -30,6 +30,7 @@ Game::Game(sf::RenderWindow& rw) : window(rw) {
     if(!font.loadFromFile("fonts/Notable-Regular.ttf")){
         std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
     }
+
 }
 
 /*

@@ -11,12 +11,12 @@ Credits::Credits(){
 
 	//y position of Text objects
 	xText = 250;
-	
+
 	//Speed of the game
-	timeModifier = 24;
+	timeModifier = 12;
 
 	//y Position for picture
-	yPic = 1900;
+	yPic = 3200;
 
 	//x position of pictures
 	xPic = 175;
@@ -24,18 +24,28 @@ Credits::Credits(){
 	//Position for monsters
 	yMon = 550;
 	xMon = 80;
-	
+
 	//Factor by which Text objects are spaced out
 	staggerFactor = 2;
 
 	//Speed of the game
-	timeFactor = 500;
-	
+	timeFactor = 800;
+
+	//overlord text
+	otX = 200;
+	otY = yPic -100;
+
 	//Vector of vectors that holds team with their respective team members
 	credits = {{"CREDITS TEAM", "Justin Johns", "Kanoa Ellis", "Alicia Stoll", "Mohamed", "Harman"},
 		{"PLAYER TEAM", "Zach Thomas", "Matt Kennedy", "James Lund", "Will Shreeve"},
 		{"OPTIONS TEAM", "Christna Kidwell", "Eric Schoenborn", "Lauren DeFrancesco", "Atone Joryman", "Matt Tetreau"},
-		{"GORGON 7", "Gorgon Slime Boss XII", "Gorgonzola Lord", "Gorgon Squire", "Colombian Gorgon"}};
+		{"GORGON 7", "Gorgon Slime Boss XII", "Gorgonzola Lord", "Gorgon Squire", "Colombian Gorgon"},
+		{"PLAYER TEAM", "John Doneth", "Mark Baker", "Noah Verdeyen", "R.J. Hamilton"}, 
+		{"HIGH SCORE TEAM", "Ben Townsend", "AJ Natzic", "Rose Ault", "Clay Negen"}, 
+		{"MONSTERS TEAM", "Logan DeLeon", "Ryan Eisenbarth", "Shawn Greene", "Eric Blanchet"},
+		{"WEAPONS TEAM", "Johnathon Killeen", "Quinn Meagher", "Emillio Braun", "Joe Stahle"},	
+		{"MUSIC", "Akashic_Records_-_Epic_Action_Hero.mp3 CC Jamendo", "Nico_Maximilian___Composer_-_Fight__Cinematic___Action_Music_.mp3 CC Jamendo"},
+		{"IMAGES", "https://en.wikipedia.org/wiki/Tract_housing#/media/File:Markham-suburbs_aerial-edit2.jpg"}};
 }
 
 int Credits::start(sf::RenderWindow &rw){
@@ -56,6 +66,13 @@ int Credits::start(sf::RenderWindow &rw){
 	gameTitle.setCharacterSize(30);
 	gameTitle.setPosition(xText, yText);
 
+	//Sets overlordText object's features
+	overlordText.setFont(font);
+	overlordText.setString("OG Designer - Ira Woodring");
+	overlordText.setFillColor(sf::Color::White);
+	overlordText.setCharacterSize(20);
+	overlordText.setPosition(otX, otY);
+
 	//Set's the groups Text object font and color 
 	groups.setFont(font);
 	groups.setFillColor(sf::Color::White);
@@ -67,8 +84,7 @@ int Credits::start(sf::RenderWindow &rw){
 		std::cerr << "Can't load start image." << std::endl;
 	}
 
-	window->clear();
-
+	//Sets the overlord images splash
 	overlord.setTexture(splash);
 
 	/** Loads a monster texture here which can be used multiple times;
@@ -78,6 +94,7 @@ int Credits::start(sf::RenderWindow &rw){
 		std::cerr << "Can't load start image." << std::endl;
 	}
 
+	//Set textures for monster sprites
 	monster1.setTexture(mTexture);
 	monster2.setTexture(mTexture);
 
@@ -97,32 +114,32 @@ int Credits::start(sf::RenderWindow &rw){
 			switch (event.type)
 			{	//Adds working exit button
 				case sf::Event::Closed:
-					window->close();
-					exit(0);
+					window -> clear();
+					return 0;
 					break;
-				
+
 				case sf::Event::KeyPressed:
 					switch (event.key.code)
 					{	//Adds working speeup button
 						case sf::Keyboard::A:
 							timeModifier = 4;	
 							break;
-						//Adds another exit option
+							//Adds another exit option
 						case sf::Keyboard::Escape:
-							window->close();
-							exit(0);
+							window -> clear();
+							return 0;
 							break;
 
 						default:
 							break;
 					}
 					break;
-				//returns game speed to normal after releasing the speedup key
+					//returns game speed to normal after releasing the speedup key
 				case sf::Event::KeyReleased:
 					switch(event.key.code)
 					{
 						case sf::Keyboard::A:
-							timeModifier = 24;
+							timeModifier = 12;
 							break;
 
 						default:
@@ -142,19 +159,25 @@ int Credits::start(sf::RenderWindow &rw){
 		//Draw gameTitle Text 
 		window->draw(gameTitle);
 
+		//Draw overlord image
 		window->draw(overlord);
 
+		window->draw(overlordText);
+
 		int x = 1;
-		
+
 		//Formats each element in the credits array and draw's them on the screen
 		for(int i = 0; i < credits.size(); i++){
 
 			for(int j =0; j < credits[i].size(); j++){
 				groups.setString(credits[i][j]);
 
+				//Sets group name to be larger than team member names
 				if(j == 0){
 					groups.setCharacterSize(25);
 					groups.setPosition(xText, yText + (50 * x++));
+
+					//Sets team member names	
 				}else{	
 					groups.setCharacterSize(20);
 					groups.setPosition(xText, yText + (50 * x++));
@@ -163,6 +186,8 @@ int Credits::start(sf::RenderWindow &rw){
 				window -> draw(groups);	
 
 			}
+
+
 
 		}
 
@@ -174,8 +199,9 @@ int Credits::start(sf::RenderWindow &rw){
 		//Speed control for scrolling credits;
 		if(mills %  timeModifier == 0){
 			gameTitle.setPosition(xText, yText--);
-			groups.setPosition(xText, yText--);
-			overlord.setPosition(xPic, yPic-=2);
+			groups.setPosition(xText, yText);
+			overlordText.setPosition(otX, otY--);
+			overlord.setPosition(xPic, yPic--);
 
 		}
 		//Control for monster movement (Dance!)	
