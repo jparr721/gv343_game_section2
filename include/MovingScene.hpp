@@ -108,7 +108,8 @@ namespace intro{
          * Param: delimiter the token used to split this string.
          * Return: The split line in a vector of strings.
          *************************************************************/
-        std::vector<std::string> splitString(std::string &line, char delimiter);
+        std::vector<std::string> splitString(std::string &line, 
+        char delimiter);
 
         /**************************************************************
          * A private function to initalize the entities for the scene

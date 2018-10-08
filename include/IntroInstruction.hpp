@@ -40,7 +40,8 @@ namespace intro{
          * Param: action the action being taken with this instruction.
          * Param: The details of this instruction.
          *************************************************************/
-        IntroInstruction(int entityID, std::string action, std::string detail);
+        IntroInstruction(int entityID, std::string action,
+         std::string detail);
 
         int getEntityID() const;
             

@@ -37,11 +37,17 @@ namespace intro{
       float nextInstruction = 2.0f;
       float timeElapsed = 0.0f;
       //The ambient wait between the next instruction happening.
-      constexpr float AMBIENT_WAIT= .041f;
+      constexpr float AMBIENT_WAIT= .25f;
       bool running = true;
       
       sf::Event event;
       sf::Clock timer;
+
+      //Hard code some sprites as disabled.
+      //If there was more added this code below would have to be cut
+      entities[2].setEnabled(false);
+      entities[3].setEnabled(false);
+      entities[4].setEnabled(false);
 
       timer.restart();
       while(running){
@@ -79,7 +85,8 @@ namespace intro{
         Scale scale(std::stoi(data[1]), std::stoi(data[2]));
         Position position(std::stoi(data[3]), std::stoi(data[4]));
 
-        entities.push_back(IntroEntity(data[0],scale, std::stoi(data[3]), std::stoi(data[4])));
+        entities.push_back(IntroEntity(data[0],scale,
+         std::stoi(data[3]), std::stoi(data[4])));
         data.clear();
       }
       entityList.close();
@@ -154,6 +161,7 @@ namespace intro{
           case IntroInstruction::PLAY_SOUND:{
             std::cout << "Sound" << std::endl;
             playSound(convertToInt(instruction.getDetail()));
+            addedWait = 1.5f;
             break;
           }
 
