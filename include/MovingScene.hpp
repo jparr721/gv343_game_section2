@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <queue>
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 #include "IntroEntity.hpp"
@@ -59,7 +60,8 @@ namespace intro{
             std::string instructionsFilename,
             std::string soundBufferFilename,
             std::string music,
-            sf::Music &player);
+            sf::Music &player,
+            sf::RenderWindow &window);
 
         /**************************************************************
          * The run fuction carrys out the sequence of the cutscene
@@ -71,20 +73,23 @@ namespace intro{
          *
          * Param: window The window being used to display this scene.
          *************************************************************/
-        void run(sf::RenderWindow &window);
+        void run();
 
       private:
         /* A list of entities for this scene. */
         std::vector<IntroEntity> entities;
 
         /* The list of instructions for this scene.  */
-        std::vector<IntroInstruction> instructions;
+        std::queue<IntroInstruction> instructions;
 
         /* The list of buffered sounds for this scene  */
         std::vector<sf::SoundBuffer> bufferedFiles;
 
         /* The list of sounds for this scene. */
         std::vector<sf::Sound> sounds;
+
+        /* The window being used to display the cutscene */
+        sf::RenderWindow &window;
 
         /* The music player for this scene. */
         sf::Music player;
@@ -128,13 +133,15 @@ namespace intro{
          *************************************************************/
         void initSounds(std::string &soundBufferList);
 
+        float doNextInstruction();
+
         void move_entity(int entityID, sf::Vector2f  move);
         void forcePosition(int entityID, sf::Vector2f posiston);
         void toggleEntity(int entityID);
-        void displaySpeech(std::string text, sf::RenderWindow &window);
+        void displaySpeech(std::string text);
         void playSound(int soundNumber);
-        void wait(float time, sf::RenderWindow &window);
-        void updateScreen(sf::RenderWindow &window);
+        void wait(float time);
+        void updateScreen();
 
         sf::Vector2f convertToVec(std::string detail);
         int convertToInt(std::string detail);

@@ -77,16 +77,18 @@ namespace intro {
       timeElapsed = clock.getElapsedTime().asSeconds();
     }
 
+    window.clear();
+
     sf::Music player;
     moving_scene::MovingScene scene(
         "intros/entityList.txt",
         "intros/instructionList.txt",
         "intros/soundList.txt",
         "music/epic_hero.wav",
-        player
-        );
+        player,
+        window);
 
-    scene.run(window);
+    scene.run();
     //    std::cout << "here intro" <<std::endl;
     //
     return 0;

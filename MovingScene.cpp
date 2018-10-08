@@ -21,7 +21,8 @@ namespace intro{
         std::string instructionsFilename,
         std::string soundBufferFilename,
         std::string music,
-        sf::Music &player){
+        sf::Music &player
+        ,sf::RenderWindow &rw): window(rw){
 
       //Load all the components in seperate functions
       initEntities(entitiesFilename);
@@ -32,54 +33,33 @@ namespace intro{
 
     }
 
-    void MovingScene::run(sf::RenderWindow &window){
-      //In film a frame rate is 24 frames a second.
-      constexpr float AMBIENT_WAIT= 1.0f;
+    void MovingScene::run(){
+      float nextInstruction = 0.0f;
+      float timeElapsed = 0.0f;
+      //The ambient wait between the next instruction happening.
+      constexpr float AMBIENT_WAIT= .75f;
+      bool running = true;
+      
       sf::Event event;
+      sf::Clock timer;
 
-      for(const auto &instruction: instructions){
-        window.clear();
-        window.pollEvent(event);
+      while(running){
+        this->window.pollEvent(event);
+        this->window.clear();
 
-        switch(instruction.getAction()){
-          case IntroInstruction::MOVE_ENTITY:{
-            move_entity(instruction.getEntityID(),
-                convertToVec(instruction.getDetail()));
-            break;
-          }
-
-          case IntroInstruction::SET_POSITION:{
-            forcePosition(instruction.getEntityID(),
-                convertToVec(instruction.getDetail()));
-            break;
-          }
-
-          case IntroInstruction::TOGGLE__ENTITY:{
-            toggleEntity(instruction.getEntityID());
-            break;
-          }
-
-          case IntroInstruction::DISPLAY_SPEECH:{
-            displaySpeech(instruction.getDetail(), window);
-            break;
-          }
-
-          case IntroInstruction::PLAY_SOUND:{
-            playSound(convertToInt(instruction.getDetail()));
-            break;
-          }
-          
-          case IntroInstruction::WAIT:{
-            wait(convertToInt(instruction.getDetail()), window);
-            break;
-          }
-          default: break; 
+        //Check to run the next instruction
+        if(timeElapsed> nextInstruction){
+          float extraWaitTime = doNextInstruction();
+          nextInstruction = timer.getElapsedTime().asSeconds() +
+            AMBIENT_WAIT + extraWaitTime;
         }
-        
-        //Update the screen and wait.
-        updateScreen(window);
-        wait(AMBIENT_WAIT, window);
+        updateScreen();
+        this->window.display();
+        running = !instructions.empty();
       }
+
+        
+        
       window.clear();
       //      sf::Event event;
       //Test code rm when done
@@ -144,7 +124,7 @@ namespace intro{
         std::getline(instructionList, buffer[2]);
 
         //Add the element to the vector
-        instructions.push_back(IntroInstruction(
+        instructions.push(IntroInstruction(
               std::stoi(buffer[0]),
               buffer[1], 
               buffer[2]
@@ -169,6 +149,49 @@ namespace intro{
       soundList.close();
     }
 
+    float MovingScene::doNextInstruction(){
+      float addedWait = 0.0f;
+
+      IntroInstruction  &instruction = instructions.front();
+      switch(instruction.getAction()){
+          case IntroInstruction::MOVE_ENTITY:{
+            move_entity(instruction.getEntityID(),
+                convertToVec(instruction.getDetail()));
+            break;
+          }
+
+          case IntroInstruction::SET_POSITION:{
+            forcePosition(instruction.getEntityID(),
+                convertToVec(instruction.getDetail()));
+            break;
+          }
+
+          case IntroInstruction::TOGGLE__ENTITY:{
+            toggleEntity(instruction.getEntityID());
+            break;
+          }
+
+          case IntroInstruction::DISPLAY_SPEECH:{
+            displaySpeech(instruction.getDetail());
+            addedWait = 3.0f;
+            break;
+          }
+
+          case IntroInstruction::PLAY_SOUND:{
+            playSound(convertToInt(instruction.getDetail()));
+            break;
+          }
+
+          case IntroInstruction::WAIT:{
+            addedWait = (float) convertToInt(instruction.getDetail());
+            break;
+          }
+          default: break;
+        }  
+      instructions.pop();
+      return addedWait;
+    }
+
     void MovingScene::move_entity(int entityID, sf::Vector2f  move){
       entities[entityID].moveSprite(move.x, move.y);
     }
@@ -183,23 +206,12 @@ namespace intro{
           !entities[entityID].isEnabled());
     }
 
-    void MovingScene::displaySpeech(std::string text, sf::RenderWindow &window){
-      constexpr float MAX_TIME = 3.0f;
-
+    void MovingScene::displaySpeech(std::string text){
       //Set the Text object
       this->text.setString(text);
       this->text.setCharacterSize(24);
 
-      //Declare timers.
-      float timeElapsed = 0.0f;
-      sf::Clock timer;
-      updateScreen(window);
-      window.draw(this->text);
-
-      while(timeElapsed < MAX_TIME){
-        window.display();
-        timeElapsed = timer.getElapsedTime().asSeconds();
-      }
+      this->window.draw(this->text);
     }
 
     void MovingScene::playSound(int soundNumber){
@@ -207,20 +219,10 @@ namespace intro{
 
     }
 
-    void MovingScene::wait(float time, sf::RenderWindow &window){
-      //Declare timers.
-      float timeElapsed = 0.0f;
-      sf::Clock timer;
-      while(timeElapsed < time){
-        window.display();
-        timeElapsed = timer.getElapsedTime().asSeconds();
-      }
-    }
-
-    void MovingScene::updateScreen(sf::RenderWindow &window){
+    void MovingScene::updateScreen(){
       for(int i = 0; i < entities.size(); ++i){
         if(entities[i].isEnabled()){
-          window.draw(entities[i].getSprite());
+          this->window.draw(entities[i].getSprite());
         }
       }
     }
