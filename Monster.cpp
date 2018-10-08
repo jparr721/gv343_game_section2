@@ -4,10 +4,11 @@
 #include <math.h>
 
 Monster::Monster(){
-	if (!texture.loadFromFile("sprites/monster_one.png")){
+	if (!spritesheet.loadFromFile("sprites/monster1sprites.png")){
 		std::cerr << "Can't load sprite." << std::endl;
 		exit(EXIT_FAILURE);
 	}
+	texture.loadFromImage(spritesheet, sf::IntRect(0,0,31,34));
 	this->health = 10;
 	this->movement_speed = 5;
 	this->x = 100;
@@ -15,6 +16,7 @@ Monster::Monster(){
 	this->followPlayer = true;
 	sprite.setTexture(texture);
 	sf::FloatRect spriteSize = sprite.getGlobalBounds();
+	currentFrame = 0;
 	sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
 	sprite.setPosition(100,100);
 	refreshRate = 90;
@@ -60,5 +62,15 @@ void Monster::move(int x, int y){
 			}
 		}
 		clock.restart();
+		nextFrame();
 	}
+}
+
+void Monster::nextFrame() {
+	currentFrame++;
+	currentFrame = currentFrame % 8;
+	sf::Texture newFrame;
+	newFrame.loadFromImage(spritesheet,
+		sf::IntRect(currentFrame * 31, 0, (currentFrame + 1) * 31, 34));
+	texture.update(newFrame);
 }
