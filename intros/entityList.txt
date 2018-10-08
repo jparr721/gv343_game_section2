@@ -1,0 +1,5 @@
+sprites/person.png,1,1,20,20
+sprites/monster_one.png,1,1, 300,300
+sprites/exclamation.png,1,1,310,275
+sprites/exclamation.png,1,1,260,275
+sprites/chat_bubble.png,1,1,300,275

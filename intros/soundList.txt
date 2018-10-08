@@ -1,0 +1,3 @@
+sounds/punch.wav
+sounds/zombie_moan.wav
+sounds/scream.wav
