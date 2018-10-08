@@ -4,7 +4,6 @@
 
 #include "Sandwich.hpp"
 
-// constructor
 Sandwich::Sandwich(int startingX, int startingY) : Collectable(startingX, startingY) {
     this->setSprite();
 }
