@@ -1,6 +1,7 @@
 #include <iostream>
-#include <Settings.hpp>
 #include "SFML/Graphics.hpp"
+#include "Settings.hpp"
+
 #include "Intro.hpp"
 #include "Game.hpp"
 

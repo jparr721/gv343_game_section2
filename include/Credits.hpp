@@ -24,8 +24,7 @@ class Credits {
 	int yMon;
 	int staggerFactor;
 	int count;
-	int otX;
-	int otY;
+
 
 	unsigned int timeFactor;
 
@@ -38,7 +37,7 @@ class Credits {
 
 	sf::Text gameTitle;
 	sf::Text groups;
-	sf::Text overlordText;
+
 
 	sf::Font font;
 
