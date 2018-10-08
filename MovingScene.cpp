@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#include <boost/tokenizer.hpp>
 #include "csv.h"
 
 #include "SFML/Graphics.hpp"
@@ -69,27 +68,19 @@ namespace intro{
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){
-      std::ifstream entityList(entitiesFilename);
+      constexpr int BUFFER_SIZE = 5;
+    
+      std::string data[BUFFER_SIZE];
+      io::CSVReader<5> reader(entitiesFilename);
+      while(reader.read_row(data[0], data[1], data[2],
+      data[3], data[4])){
 
-      std::string raw_line;
-      std::vector<std::string> data;
-      while(std::getline(entityList, raw_line)){
-        boost::tokenizer<boost::escaped_list_separator<char>> raw_split
-        {raw_line};
-        //Put the values inside the vector to be referenced 
-        for(const auto &value :raw_split){
-          data.push_back(value);
-        }
-
-        //Load an entity
         Scale scale(std::stoi(data[1]), std::stoi(data[2]));
-        Position position(std::stoi(data[3]), std::stoi(data[4]));
 
         entities.push_back(IntroEntity(data[0],scale,
          std::stoi(data[3]), std::stoi(data[4])));
-        data.clear();
+
       }
-      entityList.close();
     }
 
     //TODO make this use csv header
