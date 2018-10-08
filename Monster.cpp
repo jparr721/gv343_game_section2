@@ -17,7 +17,7 @@ Monster::Monster(){
 	sf::FloatRect spriteSize = sprite.getGlobalBounds();
 	sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
 	sprite.setPosition(100,100);
-	refreshRate = 1/60;
+	refreshRate = 90;
 }
 
 int Monster::getHealth(){
@@ -39,7 +39,7 @@ sf::Sprite Monster::getSprite(){
 }
 
 void Monster::move(int x, int y){
-	if (clock.getElapsedTime().asSeconds() > refreshRate) {
+	if (clock.getElapsedTime().asMilliseconds() > refreshRate) {
 		float dist = sqrt(
 				(this->x - x) * (this->x - x) +
 				(this->y - y) * (this->y - y)
@@ -51,12 +51,12 @@ void Monster::move(int x, int y){
 			if (this->x < x) {
 				this->x += dx;
 			} else if (this->x > x) {
-				this->x -= dx;
+				this->x += dx;
 			}
 			if (this->y < y) {
 				this->y += dy;
 			} else if (this->y > y) {
-				this->y -= dy;
+				this->y += dy;
 			}
 		}
 		clock.restart();

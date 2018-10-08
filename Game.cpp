@@ -201,9 +201,9 @@ void Game::update()
 			player.updatePosition(distribution(engine), distribution(engine));
 		}
 	}
-		if(player.getHealth() <= 0){
-			done = true;
-		}
+	if(player.getHealth() <= 0){
+		done = true;
+	}
 }
 
 
