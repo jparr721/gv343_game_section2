@@ -33,6 +33,8 @@ namespace intro{
     }
 
     void MovingScene::run(sf::RenderWindow &window){
+      //In film a frame rate is 24 frames a second.
+      constexpr float AMBIENT_WAIT= 1.0f;
       sf::Event event;
 
       for(const auto &instruction: instructions){
@@ -72,10 +74,11 @@ namespace intro{
             break;
           }
           default: break; 
-
-
-
         }
+        
+        //Update the screen and wait.
+        updateScreen(window);
+        wait(AMBIENT_WAIT, window);
       }
       window.clear();
       //      sf::Event event;
@@ -215,7 +218,6 @@ namespace intro{
     }
 
     void MovingScene::updateScreen(sf::RenderWindow &window){
-      window.clear();
       for(int i = 0; i < entities.size(); ++i){
         if(entities[i].isEnabled()){
           window.draw(entities[i].getSprite());
