@@ -191,17 +191,22 @@ void Game::processEvents()
 
 void Game::update()
 {
-	for(auto it = monsters.begin(); it != monsters.end(); ++it){
-		if(Collision::BoundingBoxTest(player.getSprite(), it->getSprite())){
-			player.harm(20);
-			std::uniform_int_distribution<int> distribution(0,50);
-			std::random_device rd;
-			std::mt19937 engine(rd());
-			player.updatePosition(distribution(engine), distribution(engine));
+	if (this->clock.getElapsedTime().asMilliseconds() >= 60) {
+		for(auto it = monsters.begin(); it != monsters.end(); ++it){
+			if(Collision::BoundingBoxTest(player.getSprite(), it->getSprite())){
+				player.harm(20);
+				std::uniform_int_distribution<int> distribution(0,50);
+				std::random_device rd;
+				std::mt19937 engine(rd());
+				player.updatePosition(distribution(engine), distribution(engine));
+			}
+			it->updatePosition(this->player.x, this->player.y);
+			printf("%d\t%d\n", this->player.x, this->player.y);
 		}
-	}
-	if(player.getHealth() <= 0){
-		done = true;
+		if(player.getHealth() <= 0){
+			done = true;
+		}
+		this->clock.restart();
 	}
 }
 

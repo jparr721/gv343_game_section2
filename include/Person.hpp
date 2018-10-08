@@ -7,6 +7,8 @@
 class Person {
 	public:
 		Person();
+		int x;
+		int y;
 		void initialize();
 		int getHealth();
 		void setHealth(int health);
@@ -17,8 +19,6 @@ class Person {
 	private:
 		sf::Sprite sprite;
 		sf::Texture texture;
-		int x;
-		int y;
 		int health;
 		sf::SoundBuffer punchBuffer;
 		sf::Sound punch;

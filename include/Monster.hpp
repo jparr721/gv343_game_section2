@@ -14,6 +14,7 @@ class Monster {
 		void move(int x, int y);
 		int movement_speed;
 		int attackPower;
+		bool followPlayer;
 
 	public:
 		Monster();
@@ -25,7 +26,7 @@ class Monster {
 };
 
 //Extension of Monster class
-class Monster_A: public Monster {
+class MonsterA: public Monster {
 	private:
 
 	public:
