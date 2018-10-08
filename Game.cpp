@@ -235,7 +235,6 @@ void Game::processEvents()
 
 void Game::update()
 {
-<<<<<<< HEAD
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		it->updatePosition(player.getX(),player.getY());
 		if (it->getHealth() <= 0) {
@@ -246,7 +245,9 @@ void Game::update()
 			std::uniform_int_distribution<int> distribution(0,50);
 			std::random_device rd;
 			std::mt19937 engine(rd());
-			player.updatePosition(distribution(engine), distribution(engine));
+			int dis1 = distribution(engine);
+			int dis2 = distribution(engine);
+			player.updatePosition(dis1, dis2);
 			weapon.setPosition(dis1,dis2);
 		}
 	}
