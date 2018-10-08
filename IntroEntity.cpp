@@ -20,10 +20,8 @@ namespace intro{
       sprite.setScale(scale.x, scale.y);
       sprite.setPosition(x, y);
 
-      sf::Vector2f position = sprite.getPosition();
-
-      std::cout << position.x <<" " << position.y << std::endl;
-
+      this->x = x;
+      this->y = y;
       this->scale = scale;
     }
 
@@ -33,10 +31,13 @@ namespace intro{
     }
 
     void IntroEntity::moveSprite(int deltaX, int deltaY){
-      if(deltaX > 0 || deltaX < 0){
+      if(deltaX > 0 ){
         sprite.setScale(-scale.x, scale.y);
       }
-      sprite.setPosition(x+deltaX, y+deltaY);
+      else{
+        sprite.setScale(scale.x, scale.y);
+      }
+      sprite.move(deltaX, deltaY);
     }
 
     void IntroEntity::setPosition(int x, int y){

@@ -82,7 +82,7 @@ namespace intro {
     sf::Music player;
     moving_scene::MovingScene scene(
         "intros/entityList.txt",
-        "intros/instructionList.txt",
+        "intros/instructionList.csv",
         "intros/soundList.txt",
         "music/epic_hero.wav",
         player,

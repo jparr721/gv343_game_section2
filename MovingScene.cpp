@@ -34,15 +34,16 @@ namespace intro{
     }
 
     void MovingScene::run(){
-      float nextInstruction = 0.0f;
+      float nextInstruction = 2.0f;
       float timeElapsed = 0.0f;
       //The ambient wait between the next instruction happening.
-      constexpr float AMBIENT_WAIT= .75f;
+      constexpr float AMBIENT_WAIT= 2.0f;
       bool running = true;
       
       sf::Event event;
       sf::Clock timer;
 
+      timer.restart();
       while(running){
         this->window.pollEvent(event);
         this->window.clear();
@@ -56,27 +57,9 @@ namespace intro{
         updateScreen();
         this->window.display();
         running = !instructions.empty();
+        timeElapsed = timer.getElapsedTime().asSeconds();
       }
-
-        
-        
       window.clear();
-      //      sf::Event event;
-      //Test code rm when done
-      // sf::Clock timer;
-      // float timeElapsed = 0.0f;
-      // while(timeElapsed < 5.0f){
-      //   window.pollEvent(event);
-      //   window.clear();
-      //   if(timeElapsed > 2.0f){
-      //     window.clear();
-      //     entities.front().setPosition(200,200);
-      //   }
-      //   window.draw(entities.front().getSprite());
-      //   window.display();
-
-      //   timeElapsed = timer.getElapsedTime().asSeconds();
-      // }
     }
 
     void  MovingScene::initEntities(std::string &entitiesFilename){
@@ -104,27 +87,14 @@ namespace intro{
 
     //TODO make this use csv header
     void MovingScene::initInstructions(std::string &instructionsFilename){
-      constexpr int BUFFER_SIZE = 3; 
-
-      //This has the exception built in according to Prof. Woodring
-      std::ifstream instructionList(instructionsFilename);
-
-      //get the number of elements in this list
+      constexpr int BUFFER_SIZE = 4; 
       std::string buffer[BUFFER_SIZE];
-      std::getline(instructionList, buffer[0]);
-      int size = std::stoi(buffer[0]);
 
-      // //throw away the line
-      // std::getline(instructionList, buffer[0]);
+      io::CSVReader<3> lineReader(instructionsFilename);
 
-      for(int index = 0; index < size; ++index){
-        //Extract the line
-        std::getline(instructionList, buffer[0], ',');
-        std::getline(instructionList, buffer[1], ',');
-        std::getline(instructionList, buffer[2]);
-
-        //Add the element to the vector
-        instructions.push(IntroInstruction(
+      while(lineReader.read_row(buffer[0], buffer[1],
+            buffer[2])){ 
+         instructions.push(IntroInstruction(
               std::stoi(buffer[0]),
               buffer[1], 
               buffer[2]
@@ -132,7 +102,14 @@ namespace intro{
             );
       }
 
-      instructionList.close();
+
+      //for(int index = 0; index < size; ++index){
+        //Extract the line
+        //std::getline(instructionList, buffer[0], ',');
+        //std::getline(instructionList, buffer[1], ',');
+        //std::getline(instructionList, buffer[2]);
+
+        // Add the element to the vector
     }
 
     void MovingScene::initSounds(std::string &soundBufferList){
@@ -232,7 +209,7 @@ namespace intro{
       std::string splitStr[2];
 
       //Split the string
-      std::getline(strStream, splitStr[0], ',');
+      std::getline(strStream, splitStr[0], ' ');
       std::getline(strStream, splitStr[1]);
 
       return sf::Vector2f(std::stoi(splitStr[0]), std::stoi(splitStr[1]));

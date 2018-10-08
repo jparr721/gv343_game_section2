@@ -53,3 +53,4 @@ nomb
 # Ignore swp files from vim
 *.swp
 .vscode/settings.json
+.DS_Store
