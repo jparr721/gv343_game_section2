@@ -1,5 +1,7 @@
 #include "SFML/Graphics.hpp"
 #include <math.h>
+#include "Monster.hpp"
+#include <iostream>
 
 Orc::Orc() {
 	if (!texture.loadFromFile("sprites/monster_two.png")) {

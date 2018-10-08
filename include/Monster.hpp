@@ -31,6 +31,6 @@ class Orc: public Monster {
 	private:
 
 	public:
-		Orc() : Monster();
+		Orc();
 };
 #endif
