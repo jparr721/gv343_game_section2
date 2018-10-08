@@ -77,3 +77,8 @@ bool Collectable::getActive()
 {
     return active;
 }
+
+void Collectable::reset()
+{
+    active = true;
+}
