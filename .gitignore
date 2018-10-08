@@ -1,5 +1,5 @@
-# IDE Output Folders
 .idea/
+<<<<<<< HEAD
 .vs/
 
 # CMake Build Directories
@@ -50,3 +50,9 @@ SFML-2.5.0-win64/
 # Ignore the executable file
 nomb
 
+# Vim swap files
+*.swp
+*.swo
+
+CMakeLists.txt
+cmake_build_debug/

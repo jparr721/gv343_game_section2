@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="CIS_343_02"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\usr\;CMake Files\..\..\..\usr\lib64\;CMake Files\..\..\..\usr\lib64\cmake\;CMake Files\..\..\..\usr\lib64\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/killeenj/gv343_game_section2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/killeenj/gv343_game_section2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/killeenj/gv343_game_section2/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CIS_343_02">
+				<Option output="/home/killeenj/gv343_game_section2/cmake-build-debug/CIS_343_02" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/killeenj/gv343_game_section2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/killeenj/gv343_game_section2/include"/>
+					<Add directory="/home/killeenj/gv343_game_section2/SFML"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 CIS_343_02"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CIS_343_02/fast">
+				<Option output="/home/killeenj/gv343_game_section2/cmake-build-debug/CIS_343_02" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/killeenj/gv343_game_section2/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/killeenj/gv343_game_section2/include"/>
+					<Add directory="/home/killeenj/gv343_game_section2/SFML"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/../../../../include/c++/8.2.0/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.0/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 CIS_343_02/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/killeenj/gv343_game_section2/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/killeenj/gv343_game_section2/Animator.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Bullet.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Collision.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Game.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Intro.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Monster.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Person.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/Weapons.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/include">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/include/Bullet.hpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/include/Weapons.hpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/main.cpp">
+			<Option target="CIS_343_02"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/../../../usr/lib64/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/../../../usr/lib64/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/../../../usr/lib64/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/../../../usr/lib64/cmake/SFML/SFMLSharedTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/home/killeenj/gv343_game_section2/../../../usr/lib64/cmake/SFML/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\usr\lib64\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
