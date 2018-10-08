@@ -9,7 +9,7 @@ Monster::Monster(){
 		exit(EXIT_FAILURE);
 	}
 	this->health = 10;
-	this->movement_speed = 5;
+	this->movement_speed = 1;
 	this->x = 100;
 	this->y = 100;
 	this->followPlayer = true;
@@ -17,7 +17,7 @@ Monster::Monster(){
 	sf::FloatRect spriteSize = sprite.getGlobalBounds();
 	sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
 	sprite.setPosition(100,100);
-	refreshRate = 1 / 60;
+	refreshRate = 1/60;
 }
 
 int Monster::getHealth(){
@@ -37,7 +37,7 @@ void Monster::updatePosition(int x, int y){
 		float angle = atan2(y - this->y, x - this->x);
 		int dx = int(this->movement_speed * cos(angle));
 		int dy = int(this->movement_speed * sin(angle));
-		if (dist <= 1000) {
+		if (dist <= 1000000) {
 			if (this->x < x) {
 				this->x += dx;
 			} else if (this->x > x) {
