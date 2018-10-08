@@ -41,6 +41,8 @@ namespace intro{
          * Param: The details of this instruction.
          *************************************************************/
         IntroInstruction(int entityID, std::string action, std::string detail);
+
+        int getEntityID() const;
             
         /**************************************************************
          * Return the details of this instruction as a string. Used 
@@ -48,7 +50,7 @@ namespace intro{
          *
          * Return: The value of detail as a string.
          *************************************************************/
-        std::string getText() const;
+        std::string getDetail() const;
 
         Action getAction() const;
 

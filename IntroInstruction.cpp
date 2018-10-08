@@ -14,11 +14,15 @@ namespace intro{
       IntroInstruction::initAction(action);
     }
 
+    int IntroInstruction::getEntityID() const{
+      return entityID;
+    }
+
     IntroInstruction::Action IntroInstruction::getAction() const{
       return action;
     }
 
-    std::string IntroInstruction::getText() const {
+    std::string IntroInstruction::getDetail() const {
       return detail;
     }
 

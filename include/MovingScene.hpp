@@ -132,9 +132,12 @@ namespace intro{
         void forcePosition(int entityID, sf::Vector2f posiston);
         void toggleEntity(int entityID);
         void displaySpeech(std::string text, sf::RenderWindow &window);
-        void playSound(std::string soundname);
+        void playSound(int soundNumber);
         void wait(float time, sf::RenderWindow &window);
         void updateScreen(sf::RenderWindow &window);
+
+        sf::Vector2f convertToVec(std::string detail);
+        int convertToInt(std::string detail);
 
 
         
