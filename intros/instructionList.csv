@@ -1,18 +1,17 @@
-# remove comments after
-#toggle things off
 2,TOGGLE_ENTITY,done
 3,TOGGLE_ENTITY,done
 4,TOGGLE_ENTITY,done
-
-#Move person to the monster
+0,MOVE_ENTITY,0 20
+0,MOVE_ENTITY,0 20
+0,MOVE_ENTITY,0 20
+0,MOVE_ENTITY,0 20
+0,MOVE_ENTITY,0 20
 0,MOVE_ENTITY,20 0
-0,MOVE_ENTITY,50 0
-0,MOVE_ENTITY,-10 0
-
-#Have the monster act suprised
-#Chat the stupid pun
-
-#Have the Monster kill the person.
-
-
-#End
+0,MOVE_ENTITY,20 0
+0,MOVE_ENTITY,20 0
+0,MOVE_ENTITY,20 0
+2,TOGGLE_ENTITY,done
+-1,WAIT,2
+2,TOGGLE_ENTITY,done
+4,TOGGLE_ENTITY,done
+-1,DISPLAY_SPEECH,In order to understand recursion you must first understand recursion
