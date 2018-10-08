@@ -70,9 +70,9 @@ int Highscore::findRank(int score){
 *Test for findRank, example: "./a.out 3200"
 *Outputs the scores it compares to, then prints the rank.
 **********************************************************************/
-int main(int argc, char** argv){
-	int score;
-	std::istringstream (argv[1]) >> score;
-	Highscore h(score);
-	std::cout << h.getRank() << std::endl;
-}	
+// int main(int argc, char** argv){
+// 	int score;
+// 	std::istringstream (argv[1]) >> score;
+// 	Highscore h(score);
+// 	std::cout << h.getRank() << std::endl;
+// }	
