@@ -4,10 +4,10 @@
 #include <iostream>
 
 Weapons::Weapons(){
-    if(!texture.loadFromFile("sprites/ak.png")){
-        std::cerr << "Can't load sprite." << std::endl;
-        exit(EXIT_FAILURE);
-    }
+    // if(!texture.loadFromFile("sprites/ak.png")){
+    //     std::cerr << "Can't load sprite." << std::endl;
+    //     exit(EXIT_FAILURE);
+    // }
     sprite.setTexture(texture);
     sf::FloatRect spriteSize = sprite.getGlobalBounds();
     sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
