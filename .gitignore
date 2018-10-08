@@ -1,5 +1,5 @@
-# IDE Output Folders
 .idea/
+
 .vs/
 
 # CMake Build Directories
@@ -50,7 +50,15 @@ SFML-2.5.0-win64/
 # Ignore the executable file
 nomb
 
+
 # Ignore swp files from vim
 *.swp
 .vscode/settings.json
 .DS_Store
+
+# Vim swap files
+*.swp
+*.swo
+
+CMakeLists.txt
+

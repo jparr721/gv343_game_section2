@@ -7,6 +7,7 @@ Monster::Monster(){
 		std::cerr << "Can't load sprite." << std::endl;
 		exit(EXIT_FAILURE);
 	}
+	this-> health = 100;
 	sprite.setTexture(texture);
 	sf::FloatRect spriteSize = sprite.getGlobalBounds();
 	sprite.setOrigin(spriteSize.width/2.0,spriteSize.height/2.0);
