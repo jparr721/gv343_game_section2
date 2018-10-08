@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Audio.hpp"
 
+// constructor
 Collectable::Collectable(int startingX, int startingY)
 {
     active = true;
@@ -24,6 +25,9 @@ void Collectable::loadTexture(std::string path, sf::IntRect rect)
     sprite.setTextureRect(rect);
 }
 
+// loadSoundEffect - method that takes a file path and
+// loads the desired sound effect, which is played,
+// once the collectable is collected
 void Collectable::loadSoundEffect(std::string path)
 {
 
@@ -42,6 +46,9 @@ sf::Sprite Collectable::getSprite()
     return this->sprite;
 }
 
+// collect - a method that takes a person
+// (the player) in the moment that he collects
+// a collectable
 int Collectable::collect(Person *person)
 {
     this->setSoundEffect();
@@ -50,6 +57,8 @@ int Collectable::collect(Person *person)
     return this->collectableEffect(person);
 }
 
+// tick - a method that balances the animation
+// of the collectable with the flow of time
 void Collectable::tick()
 {
 
@@ -61,6 +70,9 @@ void Collectable::tick()
     }
 }
 
+// getActive - a method that only returns a bool,
+// true if the collectable has been caught,
+// otherwise, return false
 bool Collectable::getActive()
 {
     return active;
