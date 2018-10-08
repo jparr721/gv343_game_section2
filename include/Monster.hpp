@@ -103,6 +103,14 @@ class Orc: public Monster {
 		Orc();
 };
 
+class RagingOrc: public Monster {
+	public:
+		/**
+		Constructor sets sprite to Raging Orc sprites
+		*/
+		RagingOrc();
+};
+
 class Specter: public Monster {
 	private:
 
