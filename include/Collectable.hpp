@@ -123,11 +123,70 @@ class Collectable {
 		virtual void animate() = 0;
 
 	public:
+		/*
+                 * Collectable - Constructor to create a collectable, pass in the starting
+                 *               x and y positions.
+                 *
+                 * @param int startingX - The starting x position of the collectable.
+                 *
+                 * @param int startingY - The starting y position of the collectable.
+		 *
+		 */
 		Collectable(int startingX, int startingY);
+
+
+                /*
+                 * tick - Call this function in the run loop of the game, it provides
+                 *        the collectable with the ability to update itself for
+                 *        animations, or provide some time based action.
+                 *
+                 * @return void
+                 *
+                 */
 		void tick();
+
+                /*
+                 * getSprite - Gives access to the internal sprite object, most likely
+                 *             for collision detection.
+                 *
+                 * @return sf::Sprite - A sprite object, which holds dimensions of the
+                 *                      sprite for the collectable.
+                 *
+                 */
 		sf::Sprite getSprite();
+
+                /*
+                 * collect - Calling this function will perform the action the collectable
+                 *           is configured to do. Most likely call this function when
+                 *           a collision is detected. Because the player does not hold
+                 *           the score counter, this function will return any score
+                 *           modifications it performs (positive or negative)
+                 *
+                 * @param Person* person - The game's player object for the collectable
+                 *                         to perform it's effect on
+                 *
+                 * @return int - The score modification that is meant to be performed
+                 *               for the player
+                 *
+                 */
 		int collect(Person* person);
+
+                /*
+                 * getActive - Provides access to the `active` property on the collectable
+                 *             which gets set to false once collected.
+                 *
+                 * @return bool - Returns the current `active` property within the collectable
+                 *
+                 */
 		bool getActive();
+
+                /*
+                 * reset - Sets the `active` property to true within the collectable
+                 *
+                 * @return void
+                 *
+                 */
+                void reset();
 };
 
 #endif
