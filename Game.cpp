@@ -264,6 +264,8 @@ void Game::update()
 		}
 		else {
 			monsters.push_back(Orc());
+			monsters.push_back(Specter());
+ 			monsters.push_back(Boss());
 		}
 	}
 	for(size_t i = 0; i < bullets.size();i++){
