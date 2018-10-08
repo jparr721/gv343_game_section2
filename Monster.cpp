@@ -2,7 +2,10 @@
 #include "SFML/Graphics.hpp"
 #include <iostream>
 #include <math.h>
-
+/************************
+Constructor initializes all
+variables and loads sprites.
+************************/
 Monster::Monster(){
 	if (!spritesheet.loadFromFile("sprites/monster1sprites.png")){
 		std::cerr << "Can't load sprite." << std::endl;
@@ -22,50 +25,74 @@ Monster::Monster(){
 	refreshRate = 90;
 }
 
+/*********************
+Returns the monster's
+current health.
+*********************/
 int Monster::getHealth(){
 	return health;
 }
 
+/**********************
+Hurts the monster by
+amount.
+**********************/
 void Monster::harm(int amount){
 	health = health - amount;
 }
 
+/**********************
+Moves the monster towards
+the coordinate (x,y).
+**********************/
 void Monster::updatePosition(int x, int y){
 	move(x,y);
 	sprite.setPosition(this->x, this->y);
 }
 
+/**********************
+Returns the sprite.
+**********************/
 sf::Sprite Monster::getSprite(){
 	sprite.setTexture(texture);
 	return this->sprite;
 }
 
+/*************************
+Uses trig functions to
+update the monsters position
+and move it towards the point
+(x,y).
+*************************/
 void Monster::move(int x, int y){
+	// only move if enough time has passed
 	if (clock.getElapsedTime().asMilliseconds() > refreshRate) {
+		// distance formula
 		float dist = sqrt(
 				(this->x - x) * (this->x - x) +
 				(this->y - y) * (this->y - y)
 				);
 		float angle = atan2(y - this->y, x - this->x);
+
+		// find change in y and x through trig
 		int dx = int(this->movement_speed * cos(angle));
 		int dy = int(this->movement_speed * sin(angle));
-		if (dist <= 1000000) {
-			if (this->x < x) {
-				this->x += dx;
-			} else if (this->x > x) {
-				this->x += dx;
-			}
-			if (this->y < y) {
-				this->y += dy;
-			} else if (this->y > y) {
-				this->y += dy;
-			}
+
+		if (dist <= 1000) {
+			this->x += dx;
+			this->y += dy;
 		}
 		clock.restart();
+		// animate sprite
 		nextFrame();
 	}
 }
 
+/*******************
+Changes the sprite to
+the next frame in the
+spritesheet.
+*******************/
 void Monster::nextFrame() {
 	currentFrame++;
 	currentFrame = currentFrame % 8;
