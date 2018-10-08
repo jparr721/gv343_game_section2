@@ -8,11 +8,11 @@
 
 class Game {
 	public:
-		Game();
+		Game(sf::RenderWindow& window);
 		int start();
 		void run();
+		sf::RenderWindow* window;
 	private:
-		sf::RenderWindow window;
 		void processEvents();
 		void update();
 		void render();
