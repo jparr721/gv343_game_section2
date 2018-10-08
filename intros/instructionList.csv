@@ -1,4 +1,18 @@
+# remove comments after
+#toggle things off
+2,TOGGLE_ENTITY,done
+3,TOGGLE_ENTITY,done
+4,TOGGLE_ENTITY,done
+
+#Move person to the monster
 0,MOVE_ENTITY,20 0
 0,MOVE_ENTITY,50 0
 0,MOVE_ENTITY,-10 0
--1,WAIT,5
+
+#Have the monster act suprised
+#Chat the stupid pun
+
+#Have the Monster kill the person.
+
+
+#End
