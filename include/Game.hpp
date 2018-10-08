@@ -33,6 +33,7 @@ class Game {
 		sf::Vector2f aimDirNorm;
 
 
+
 };
 
 #endif

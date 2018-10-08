@@ -123,6 +123,7 @@ int Game::start(){
 	}
 
 	return 0;
+
 }
 
 /*
@@ -156,6 +157,7 @@ void Game::run()
 		render();
 	}
 	music.stop();
+
 }
 
 /*
@@ -216,6 +218,7 @@ void Game::processEvents()
 				break;
 		}
 	}
+
 }
 
 /*
@@ -247,6 +250,7 @@ void Game::update()
 	if(player.getHealth() <= 0){
 		done = true;
 	}
+
 }
 
 /*
@@ -281,6 +285,7 @@ void Game::render()
 	window.draw(playerHealth);
 
 	window.display();
+
 }
 
 

@@ -25,6 +25,7 @@ class Credits {
 	int staggerFactor;
 	int count;
 
+
 	unsigned int timeFactor;
 
 	sf::Texture splash;
@@ -36,6 +37,7 @@ class Credits {
 
 	sf::Text gameTitle;
 	sf::Text groups;
+
 
 	sf::Font font;
 
