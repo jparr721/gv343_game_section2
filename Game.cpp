@@ -235,14 +235,13 @@ void Game::processEvents()
 
 void Game::update()
 {
-	for(size_t i = 0; i < bullets.size();i++){
-		bullets[i].shape.move(bullets[i].curVelo);
-	}
-
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
+		it->updatePosition(player.getX(),player.getY());
+		if (it->getHealth() <= 0) {
+			monsters.erase(it);
+		}
 		if(Collision::BoundingBoxTest(player.getSprite(), it->getSprite())){
 			player.harm(20);
-			std::cout<< it->getHealth() << std::endl;
 			std::uniform_int_distribution<int> distribution(0,50);
 			std::random_device rd;
 			std::mt19937 engine(rd());
@@ -250,10 +249,29 @@ void Game::update()
 			int dis2 = distribution(engine);
 			player.updatePosition(dis1, dis2);
 			weapon.setPosition(dis1,dis2);
-
 		}
-
 	}
+	if(player.getHealth() <= 0){
+		done = true;
+		monsters.clear();
+	}
+	std::uniform_int_distribution<int> distribution(0, 800);
+	std::random_device rd;
+	std::mt19937 engine(rd());
+	if(distribution(engine) == 0) {
+		if(distribution(engine) < 400) {
+			monsters.push_back(Monster());
+		}
+		else {
+			monsters.push_back(Orc());
+			monsters.push_back(Specter());
+ 			monsters.push_back(Boss());
+		}
+	}
+	for(size_t i = 0; i < bullets.size();i++){
+		bullets[i].shape.move(bullets[i].curVelo);
+	}
+
         for (auto col = collectables.begin(); col != collectables.end(); ++col)
         {
             if (Collision::BoundingBoxTest(player.getSprite(), (*col)->getSprite()) && (*col)->getActive())
@@ -264,8 +282,8 @@ void Game::update()
 	if(player.getHealth() <= 0){
 		done = true;
 	}
-
 }
+
 
 /*
  * Now that update() has updated our state we redraw.
@@ -311,6 +329,3 @@ void Game::render()
 	window.display();
 
 }
-
-
-

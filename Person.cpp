@@ -115,6 +115,14 @@ void Person::harm(int hp){
 	punch.play();
 }
 
+int Person::getX() {
+	return x;
+}
+
+int Person::getY() {
+	return y;
+}
+
 /*****************************************************
  * Assigns speed based on parameter
  * @param s New value for speed
@@ -130,6 +138,3 @@ void Person::setSpeed(float s){
 float Person::getSpeed(){
 	return this->speed;
 }
-
-
-
