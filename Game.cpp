@@ -1,7 +1,7 @@
 /*
  * Game.cpp
- * Much code taken from SFML tutorials on SFML site.  Basic 
- * flow tutorial at 
+ * Much code taken from SFML tutorials on SFML site.  Basic
+ * flow tutorial at
  * from https://maksimdan.gitbooks.io/sfml-and-gamedevelopement/content/game_class.html
  *
  * You will need to read SFML API and other documentation to understand this code
@@ -16,15 +16,13 @@
 #include <random>
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
+#include "SFML/System.hpp"
 
 /*
  * Default constructor.  Creates our window and sets up
  * initial state of shared variables.
  */
-Game::Game(){
-	// Creates the window.  We are using the same window for 
-	// the intro screen as the game, though this can change.
-	window.create(sf::VideoMode(WIDTH, HEIGHT + 100), "Not on my block.");
+Game::Game(sf::RenderWindow& rw) : window(rw) {
 	// when done is true we quit
 	done = false;
 	// Add monsters to the game via a vector of Monsters.
@@ -34,6 +32,17 @@ Game::Game(){
 		std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
 	}
 }
+
+class Bullet {
+public:
+	sf::CircleShape shape;
+	sf::Vector2f curVelo;
+	float maxSpeed;
+	Bullet(float radius = 6.f) : curVelo(0.f, 0.f), maxSpeed(1.f){
+		this->shape.setRadius(radius);
+		this->shape.setFillColor(sf::Color::Red);
+	}
+};
 
 /*
  * Display a splash screen with some message for users.
@@ -67,9 +76,10 @@ int Game::start(){
 	text.setString("(Press Enter to continue)");
 	text.setCharacterSize(24);
 	text.setFillColor(sf::Color::White);
-	text.setPosition(150, 350); 
+	text.setPosition(150, 350);
 
 	sf::Clock clock;
+
 
 	sf::Music music;
 	if(!music.openFromFile("music/epic_hero.wav")){
@@ -121,10 +131,14 @@ int Game::start(){
  * as the window should stay open after the game play
  * is complete.
  */
+Bullet b1;
+std::vector<Bullet> bullets;
 
 void Game::run()
 {
 	player.initialize();
+	weapon.initalize();
+	bullets.push_back(Bullet(b1));
 	done = false;
 	sf::Music music;
 	if(!music.openFromFile("music/in_game.wav")){
@@ -144,7 +158,7 @@ void Game::run()
 	music.stop();
 }
 
-/* 
+/*
  * All game events such as keypresses are handled
  * here.
  */
@@ -152,6 +166,11 @@ void Game::run()
 void Game::processEvents()
 {
 	sf::Event event;
+	playerCenter = sf::Vector2f(weapon.getX(),weapon.getY());
+	mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(window));
+	aimDir = mousePosWindow - playerCenter;
+	aimDirNorm = aimDir / (float)sqrt ((pow(aimDir.x,2.0) + pow(aimDir.y,2.0)));
+	std::cout << aimDirNorm.x << "" << aimDirNorm.y << std::endl;
 	while (window.pollEvent(event))
 	{
 		switch (event.type)
@@ -159,25 +178,40 @@ void Game::processEvents()
 			case sf::Event::Closed:
 				window.close();
 				exit(0);
+		    case sf::Event::MouseButtonPressed:
+		        switch(event.mouseButton.button) {
+		            case sf::Mouse::Left:
+                        b1.shape.setPosition(playerCenter);
+                        b1.curVelo = aimDirNorm * b1.maxSpeed;
+                        bullets.push_back(Bullet(b1));
+                    break;
+		            default:
+		            	break;
+                }
+
 
 			case sf::Event::KeyPressed:
 				switch(event.key.code){
 					std::cout << event.key.code;
 					case sf::Keyboard::Left:
-					player.updatePosition(-20, 0);
-					break;
+						player.updatePosition(-20, 0);
+						weapon.setPosition(-20,0);
+						break;
 					case sf::Keyboard::Right:
-					player.updatePosition(20, 0);
-					break;
+						player.updatePosition(20, 0);
+						weapon.setPosition(20,0);
+						break;
 					case sf::Keyboard::Up:
-					player.updatePosition(0, -20);
-					break;
+						player.updatePosition(0, -20);
+						weapon.setPosition(0,-20);
+						break;
 					case sf::Keyboard::Down:
-					player.updatePosition(0, 20);
-					break;
+						player.updatePosition(0, 20);
+						weapon.setPosition(0,20);
+						break;
 					default:
-					break;
-				}				
+						break;
+				}
 			default:
 				break;
 		}
@@ -191,14 +225,24 @@ void Game::processEvents()
 
 void Game::update()
 {
+	for(size_t i = 0; i < bullets.size();i++){
+		bullets[i].shape.move(bullets[i].curVelo);
+	}
+
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		if(Collision::BoundingBoxTest(player.getSprite(), it->getSprite())){
 			player.harm(20);
+			std::cout<< it->getHealth() << std::endl;
 			std::uniform_int_distribution<int> distribution(0,50);
 			std::random_device rd;
 			std::mt19937 engine(rd());
-			player.updatePosition(distribution(engine), distribution(engine));
+			int dis1 = distribution(engine);
+			int dis2 = distribution(engine);
+			player.updatePosition(dis1, dis2);
+			weapon.setPosition(dis1,dis2);
+
 		}
+
 	}
 	if(player.getHealth() <= 0){
 		done = true;
@@ -213,6 +257,10 @@ void Game::render()
 {
 	window.clear();
 	window.draw(player.getSprite());
+	window.draw(weapon.getSprite());
+	for(size_t i = 0; i <bullets.size(); i ++){
+		window.draw(bullets[i].shape);
+	}
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		window.draw( it->getSprite() );
 	}
@@ -234,3 +282,6 @@ void Game::render()
 
 	window.display();
 }
+
+
+
