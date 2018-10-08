@@ -27,10 +27,10 @@ class Monster {
 };
 
 //Extension of Monster class
-class MonsterA: public Monster {
+class Orc: public Monster {
 	private:
 
 	public:
-		MonsterA();
+		Orc() : Monster();
 };
 #endif

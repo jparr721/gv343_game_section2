@@ -9,7 +9,7 @@ Monster::Monster(){
 		exit(EXIT_FAILURE);
 	}
 	this->health = 10;
-	this->movement_speed = 1;
+	this->movement_speed = 5;
 	this->x = 100;
 	this->y = 100;
 	this->followPlayer = true;
