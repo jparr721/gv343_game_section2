@@ -1,5 +1,5 @@
-# IDE Output Folders
 .idea/
+<<<<<<< HEAD
 .vs/
 
 # CMake Build Directories
@@ -53,3 +53,6 @@ nomb
 # Vim swap files
 *.swp
 *.swo
+
+CMakeLists.txt
+cmake_build_debug/
