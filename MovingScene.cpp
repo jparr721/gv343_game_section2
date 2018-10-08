@@ -37,7 +37,7 @@ namespace intro{
       float nextInstruction = 2.0f;
       float timeElapsed = 0.0f;
       //The ambient wait between the next instruction happening.
-      constexpr float AMBIENT_WAIT= 2.0f;
+      constexpr float AMBIENT_WAIT= .041f;
       bool running = true;
       
       sf::Event event;
@@ -101,15 +101,6 @@ namespace intro{
               )
             );
       }
-
-
-      //for(int index = 0; index < size; ++index){
-        //Extract the line
-        //std::getline(instructionList, buffer[0], ',');
-        //std::getline(instructionList, buffer[1], ',');
-        //std::getline(instructionList, buffer[2]);
-
-        // Add the element to the vector
     }
 
     void MovingScene::initSounds(std::string &soundBufferList){
@@ -130,36 +121,44 @@ namespace intro{
       float addedWait = 0.0f;
 
       IntroInstruction  &instruction = instructions.front();
+      std::cout << instruction.getDetail() << std::endl;
       switch(instruction.getAction()){
+
           case IntroInstruction::MOVE_ENTITY:{
+            std::cout << "Move" << std::endl;
             move_entity(instruction.getEntityID(),
                 convertToVec(instruction.getDetail()));
             break;
           }
 
           case IntroInstruction::SET_POSITION:{
+            std::cout << "Set_Pos" << std::endl;
             forcePosition(instruction.getEntityID(),
                 convertToVec(instruction.getDetail()));
             break;
           }
 
-          case IntroInstruction::TOGGLE__ENTITY:{
+          case IntroInstruction::TOGGLE_ENTITY:{
+            std::cout << "Toggle" << std::endl;
             toggleEntity(instruction.getEntityID());
             break;
           }
 
           case IntroInstruction::DISPLAY_SPEECH:{
+            std::cout << "Speech" << std::endl;
             displaySpeech(instruction.getDetail());
             addedWait = 3.0f;
             break;
           }
 
           case IntroInstruction::PLAY_SOUND:{
+            std::cout << "Sound" << std::endl;
             playSound(convertToInt(instruction.getDetail()));
             break;
           }
 
           case IntroInstruction::WAIT:{
+            std::cout << "Wait" << std::endl;
             addedWait = (float) convertToInt(instruction.getDetail());
             break;
           }
@@ -184,6 +183,10 @@ namespace intro{
     }
 
     void MovingScene::displaySpeech(std::string text){
+      sf::Font font;
+
+      if(!font.loadFromFile("fonts/COMIC.TTF"))
+        return;
       //Set the Text object
       this->text.setString(text);
       this->text.setCharacterSize(24);

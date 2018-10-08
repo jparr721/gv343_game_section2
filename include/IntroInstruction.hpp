@@ -26,7 +26,7 @@ namespace intro{
         enum Action{
           MOVE_ENTITY,
           SET_POSITION,
-          TOGGLE__ENTITY,
+          TOGGLE_ENTITY,
           DISPLAY_SPEECH, 
           PLAY_SOUND,
           WAIT

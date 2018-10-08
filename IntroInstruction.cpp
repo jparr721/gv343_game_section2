@@ -42,8 +42,8 @@ namespace intro{
       else if(action == "SET_POSITION"){
         this->action = SET_POSITION;
       }
-      else if(action == "TOGGLE__ENTITY"){
-        this->action = TOGGLE__ENTITY;
+      else if(action == "TOGGLE_ENTITY"){
+        this->action = TOGGLE_ENTITY;
       }
       else if(action == "DISPLAY_SPEECH"){
         this->action = DISPLAY_SPEECH;

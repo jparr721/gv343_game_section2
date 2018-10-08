@@ -31,7 +31,7 @@ namespace intro{
     }
 
     void IntroEntity::moveSprite(int deltaX, int deltaY){
-      if(deltaX > 0 ){
+      if(deltaX < 0 ){
         sprite.setScale(-scale.x, scale.y);
       }
       else{
