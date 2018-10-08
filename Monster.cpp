@@ -62,4 +62,3 @@ void Monster::move(int x, int y){
 		clock.restart();
 	}
 }
-

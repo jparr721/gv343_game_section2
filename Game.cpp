@@ -27,8 +27,6 @@ Game::Game(){
 	window.create(sf::VideoMode(WIDTH, HEIGHT + 100), "Not on my block.");
 	// when done is true we quit
 	done = false;
-	// Add monsters to the game via a vector of Monsters.
-	monsters.push_back(Monster());
 	// The "standard" game font is loaded here.
 	if(!font.loadFromFile("fonts/Notable-Regular.ttf")){
 		std::cerr << "We should be throwing exceptions here... font can't load." << std::endl;
@@ -193,6 +191,9 @@ void Game::update()
 {
 	for(auto it = monsters.begin(); it != monsters.end(); ++it){
 		it->updatePosition(player.getX(),player.getY());
+		if (it->getHealth() <= 0) {
+			monsters.erase(it);
+		}
 		if(Collision::BoundingBoxTest(player.getSprite(), it->getSprite())){
 			player.harm(20);
 			std::uniform_int_distribution<int> distribution(0,50);
@@ -203,6 +204,18 @@ void Game::update()
 	}
 	if(player.getHealth() <= 0){
 		done = true;
+		monsters.clear();
+	}
+	std::uniform_int_distribution<int> distribution(0, 800);
+	std::random_device rd;
+	std::mt19937 engine(rd());
+	if(distribution(engine) == 0) {
+		if(distribution(engine) < 400) {
+			monsters.push_back(Monster());
+		}
+		else {
+			monsters.push_back(Orc());
+		}
 	}
 }
 

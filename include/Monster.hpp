@@ -16,7 +16,6 @@ class Monster {
 		bool followPlayer;
 		sf::Clock clock;
 		float refreshRate;
-
 	public:
 		Monster();
 		int getHealth();
