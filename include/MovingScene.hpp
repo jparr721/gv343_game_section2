@@ -134,21 +134,69 @@ namespace intro{
          *************************************************************/
         void initSounds(std::string &soundBufferList);
 
+	/*************************************************************
+	 * A private funstion to run the next Instruction/Scene
+	 *
+	*************************************************************/
         float doNextInstruction();
 
+	/*************************************************************
+	 * This method moves a given Image/sprite 
+	 *
+	*************************************************************/
         void move_entity(int entityID, sf::Vector2f  move);
+
+	/*************************************************************
+	 * This method will place the given entity to a static 
+	 * position 
+	 *
+	*************************************************************/
         void forcePosition(int entityID, sf::Vector2f posiston);
+
+	/*************************************************************
+	 * This method will 'toggle'/activate and diactivate
+	 * a specific entitiy acoirding tho its current state 
+	 *
+	 **********************************************************/
         void toggleEntity(int entityID);
+
+	/*************************************************************
+	 * this methods will emulate pockemon style subtitles
+	 * as the main form of speech
+	 *
+	*************************************************************/
         void displaySpeech(std::string text);
+
+	/*************************************************************
+	 * This method will play a sound based on its ID
+	 *
+	*************************************************************/
         void playSound(int soundNumber);
+
+	/*************************************************************
+	 * This method will simulate a leep acording to the 
+	 * given time in milliseconds
+	 *
+	*************************************************************/
         void wait(float time);
+
+	/*************************************************************
+	 * This methods re renders the screen to its current state
+	 *
+	*************************************************************/
         void updateScreen();
 
+	/*************************************************************
+	 * Converts the given String to a Vector Object 
+	 *
+	*************************************************************/
         sf::Vector2f convertToVec(std::string detail);
+
+	/*************************************************************
+	 * Converts the given String to an int 
+	 *
+	*************************************************************/
         int convertToInt(std::string detail);
-
-
-        
     };
   }
 }
