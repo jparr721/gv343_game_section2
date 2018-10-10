@@ -135,50 +135,53 @@ namespace intro{
         void initSounds(std::string &soundBufferList);
 
 	/*************************************************************
-	 * A private funstion to run the next Instruction/Scene
+	 * A private function to run the next Instruction/Scene
 	 *
 	*************************************************************/
         float doNextInstruction();
 
 	/*************************************************************
-	 * This method moves a given Image/sprite 
+	 * This method moves a given Image/sprite to the specific
+	 * x y coordinates passed through the sf Object.
 	 *
+	 *
+	 * parameter runes: int with the enitity ID and sf::Vector 
+	 * 		    with the two coordiantes x and y.
 	*************************************************************/
         void move_entity(int entityID, sf::Vector2f  move);
 
 	/*************************************************************
 	 * This method will place the given entity to a static 
-	 * position 
+	 * position wich means that no animation will happen.
 	 *
+	 * parameter runes: int with the enitity ID and sf::Vector 
+	 * 		    with the two coordiantes x and y.
 	*************************************************************/
         void forcePosition(int entityID, sf::Vector2f posiston);
 
 	/*************************************************************
-	 * This method will 'toggle'/activate and diactivate
+	 * This  will 'toggle'/activate and diactivate
 	 * a specific entitiy acoirding tho its current state 
 	 *
+	 * parameter runes: int with the entitiy ID  
 	 **********************************************************/
         void toggleEntity(int entityID);
 
 	/*************************************************************
-	 * this methods will emulate pockemon style subtitles
+	 * this spell  will emulate pockemon style subtitles
 	 * as the main form of speech
 	 *
+	 * parameter runes: std::string with the desired speech
 	*************************************************************/
         void displaySpeech(std::string text);
 
 	/*************************************************************
 	 * This method will play a sound based on its ID
 	 *
+	 * parameter runes: int with the Id of the decired sound
 	*************************************************************/
         void playSound(int soundNumber);
 
-	/*************************************************************
-	 * This method will simulate a leep acording to the 
-	 * given time in milliseconds
-	 *
-	*************************************************************/
-        void wait(float time);
 
 	/*************************************************************
 	 * This methods re renders the screen to its current state
@@ -187,14 +190,19 @@ namespace intro{
         void updateScreen();
 
 	/*************************************************************
-	 * Converts the given String to a Vector Object 
+	 * Converts the given String to a Vector Object. In other
+	 * words, wizard david didn't approve of slowcode. a lazy
+	 * wizard is a great candidate to grand wizard. :p
 	 *
+	 * parameter runes: std::string that provides x and y together 
 	*************************************************************/
         sf::Vector2f convertToVec(std::string detail);
 
 	/*************************************************************
 	 * Converts the given String to an int 
-	 *
+	 * 
+	 * parameter runes: std:string that converts a string into 
+	 * 		    ints for x and y coordinates
 	*************************************************************/
         int convertToInt(std::string detail);
     };
